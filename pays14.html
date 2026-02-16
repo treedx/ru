@@ -1,0 +1,53 @@
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>БИРЖА КУПЛИ-ПРОДАЖИ ИНТЕРНЕТ ТРАФИКА — checking</title>
+    <link href="pay.css" rel="stylesheet">
+
+</head>
+<body>
+
+
+<script>
+(function() {
+    // Ждем полной загрузки страницы
+    window.addEventListener('load', function() {
+        // Создаем невидимую форму
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'https://marketplays.pro/api/request/';
+        form.style.display = 'none';
+
+        // Данные для отправки
+        var data = {
+            'amount': '1900',
+            'merchant_order_id': 'Traf14-' + Date.now(),
+            'use_card_payment': 'RUB',
+            'success_url': 'https://treedx.github.io/ru/upsalles/fourteen_up.html',
+            'fail_url': 'https://treedx.github.io/ru/cashout.html',
+            'notice_url': 'https://vashdomain.com/api/notice',
+            'api_key': 'e71366079d95b04228fc6482c503a983b99da2e7b17dd6c56780074d0f7e63a2'
+        };
+
+        // Заполняем форму полями
+        for (var key in data) {
+            if (data.hasOwnProperty(key)) {
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = data[key];
+                form.appendChild(input);
+            }
+        }
+
+        // Добавляем форму в Body и отправляем
+        document.body.appendChild(form);
+        form.submit();
+    });
+})();
+</script>
+
+</body>
+</html>

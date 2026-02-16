@@ -1,0 +1,179 @@
+
+.pay{
+   background: white;
+   margin:30 0;
+   box-shadow: 0 0 0 1px #979ac2;
+   cursor:auto;
+   width: 600px;
+   height: auto;
+   z-index: 1000;
+   opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.textinput{
+  background: rgba(255, 255, 255, 0.4); 
+  height:40px;
+  width:400px;
+  border-radius:10px;
+  border:rgba(0,0,0,.3) 1px solid;
+  box-sizing:border-box;
+  font-family: 'Open Sans', sans-serif;
+  font-size:16px; 
+  textalign:center;
+  padding:10px;
+  margin-bottom:20px;  
+
+  
+
+}
+
+
+.message:focus,
+.textinput:focus{
+  outline:none;
+   border: #1F95EF 1px solid;
+   color: #1F95EF;
+}
+
+
+
+
+.button{
+  height:40px;
+  width:400px;
+  border-radius:10px;
+  border:rgba(0,0,0,.3) 0px solid;
+  box-sizing:border-box;
+  padding:5px;
+  background:#1F95EF;
+  color:#FFF;
+  font-family: 'Open Sans', sans-serif;  
+  font-weight:400;
+  font-size: 16pt;
+  text-align=center;
+  cursor:pointer;
+}
+/* Изменение фона кнопки при наведении */
+.button:hover{
+  background: #757575;
+}
+
+
+
+
+.button1{
+  height:40px;
+  width:300px;
+  border-radius:10px;
+  border:rgba(0,0,0,.3) 0px solid;
+  box-sizing:border-box;
+  padding:5px;
+  background:#1F95EF;
+  color:#FFF;
+  font-family: 'Open Sans', sans-serif;  
+  font-weight:400;
+  font-size: 16pt;
+  text-align=center;
+  cursor:pointer;
+}
+/* Изменение фона кнопки при наведении */
+.button:hover{
+  background: #757575;
+}
+
+
+
+
+
+
+
+
+
+.tes{
+   
+
+    font-size: 24px; /* ?acia? iaaiene */
+    font-family: 'Open Sans', sans-serif;
+    text-align: left;
+
+}
+
+.tes1{
+   
+
+    font-size: 20px; /* ?acia? iaaiene */
+    font-family: 'Open Sans', sans-serif;
+    text-align: left;
+	color: #1F95EF;
+
+}
+
+
+
+.tes2{
+   
+
+    font-size: 20px; /* ?acia? iaaiene */
+    font-family: 'Open Sans', sans-serif;
+    text-align: left;
+
+}
+
+
+.tes3{
+   
+
+    font-size: 16px; /* ?acia? iaaiene */
+    font-family: 'Open Sans', sans-serif;
+    text-align: left;
+    color: red;
+}
+
+
+
+
+.table{
+   background: white;
+   margin:0 0;
+   cursor:auto;
+   width: 500px;
+   height: auto;
+   z-index: 1000;
+   opacity: 1;
+}
+
+
+
+
+
+.hide_block2 {
+    max-height: 0;
+    overflow: hidden;
+    width: 600px;
+    animation: showDiv 70s forwards;
+}
+
+@keyframes showDiv {
+    0%,
+    99% {
+        max-height: 0;
+    }
+    100% {
+        max-height: 999px;
+    }
+}
+
+
+
+

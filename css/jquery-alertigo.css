@@ -1,0 +1,65 @@
+/*
+	* Alertigo jQuery Plugin
+	*
+	* @file: jquery-alertigo.css
+	* @author: Mark Coyne
+	* @site: www.coynem.com
+	* @license: MIT License
+*/
+
+/*-----------------------------------------------------------------
+	ALERTIGO
+-----------------------------------------------------------------*/
+
+#alertigo {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+    z-index: 2500;
+}
+
+.alertigo {
+    color: #fff;
+    clear: both;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+}
+
+.alertigo:last-of-type {
+    margin-bottom: 0;
+}
+
+.alertigo-green {
+    background-color: rgba(92, 184, 92, 1);
+    border-color: #4cae4c;
+}
+
+.alertigo-light-blue {
+    background-color: rgba(91, 192, 222, 0.9);
+    border-color: #46b8da;
+}
+
+.alertigo-orange {
+    background-color: rgba(240, 173, 78, 0.9);
+    border-color: #eea236;
+}
+
+.alertigo-red {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+/*-----------------------------------------------------------------
+	ALERTIGO :: UP TO 991PX
+-----------------------------------------------------------------*/
+
+@media only screen and (max-width: 991px) {
+    #alertigo {
+        max-width: 100%;
+    }
+}

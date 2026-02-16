@@ -1,0 +1,847 @@
+<html lang="ru"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>БИРЖА КУПЛИ-ПРОДАЖИ ИНТЕРНЕТ ТРАФИКА — checking</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/jquery-alertigo.css" rel="stylesheet"><!--    <link href="http://-->
+    <!--/css/style.css" rel="stylesheet">-->
+    <link href="css/style_white.css?121211212" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="css/fm.revealator.jquery.min.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/png">
+    <script>var Cframe = false;
+    window.loadFrame = function (frame) {
+        if (frame) {
+            Cframe = frame;
+        }
+        try {
+            var progress = document.getElementById("progress");
+            Cframe.style.height = Cframe.contentWindow.document.body.scrollHeight + "px";
+            Cframe.style.opacity = "1";
+        } catch (err) {
+            console.log(err);
+        }
+        setTimeout(function () {
+            loadFrame();
+        }, 3000)
+    }</script>
+</head>
+<body class="at-top">
+<div class="header">
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center" style="color:color: #212529;">
+            <div class="col-12 col-xl-5 logoBlock"><img class="logo d-none d-sm-inline" src="img/logo.png">
+                <div class="logoText d-inline-block align-middle"><span class="logoHead d-block traff"><span style="color:#287832;">T</span><span style="color:#000;">RAFFIC</span> <span style="color:#287832;">TREE</span></span> <span class="logoBottom d-block">БИРЖА КУПЛИ-ПРОДАЖИ ИНТЕРНЕТ-ТРАФИКА</span>
+                </div>
+            </div>
+            <div class="col-12 col-xl-4 headerText text-center">
+                <div class="d-inline-block stat"><span class="dashed" style="float:left;padding-left: 10px;" id="yAccountText">Номер аккаунта</span>
+                    <div style="float:right;display:inline-flex;"><span class="arrowTraff left d-none d-sm-block"></span> <strong class="val" id="yAccount">№71891</strong>
+                        <span class="arrowTraff right d-none d-sm-block"></span></div>
+                </div>
+                <div class="d-inline-block stat"><span class="dashed" style="float:left;padding-left: 10px;" id="yBalanceText">Баланс аккаунта</span>
+                    <div style="float:right;display:inline-flex;"><span class="arrowTraff left d-none d-sm-block"></span> <strong class="val" id="yBalance">0</strong> <span class="dashed">₽</span> <span class="arrowTraff right d-none d-sm-block"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="display: none;background: #f1f1f1;border-radius: 0;padding: 0px;margin-bottom:0;" class="header_small">
+    <div class="container-fluid">
+        <div class="content">
+            <div class="container">
+                <div class="row" style="    padding-bottom: 10px;">
+                    <div class="col-12 col-sm-12 col-md-6 text-center ostatok"><p style="margin: 8px 0 0 0;color: #fff;background: #002d5d;border: 1px dotted;">ВАШ БАЛАНС:
+                        <strong style="white-space: nowrap;" id="yBalance"></strong></p></div>
+                    <div class="col-12 col-sm-12 col-md-6 text-center ostatok"><p style="margin: 8px 0 0 0;color: #fff;background: #002d5d;border: 1px dotted;">НОМЕР СЧЕТА:
+                        <strong style="white-space: nowrap;" id="yAccount"></strong></p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col text-center" style="margin:40px 0 70px 0;border: 1px solid #d6d6d6;border-radius: 10px;padding: 20px;" id="app"><h2 style="color:#004777;">Оценка вашего интернет-трафика</h2>        <h4 id="sellyouTraff" style="color:#008000;">Оставайтесь на странице!</h4>        <div class="row mt-4 d-flex justify-content-center" style="font-size:21px;">        <div class="col-12 col-md-4" style=" border: 1px solid #d6d6d6; border-radius: 10px; padding: 15px; margin: 10px; ">        <span style="color:#004777;">Статус оценки</span><br><br>        <img id="loadtraff" style="width:150px;" src="img/loadtraff.gif"><br><br>        <span id="loadTraffStatus" style="font-weight:bold;">Тестирование скорости</span>        </div>        <div class="col-12 col-md-6" style=" border: 1px solid #d6d6d6; border-radius: 10px; padding: 15px; margin: 10px; ">            <span style="color:#004777;">Результат оценки</span><br><br>            <span style="color:#008000;font-weight:bold;">Покупателей трафика подобрано:</span>            <span id="buyers" style=" border: 1px solid; border-radius: 10px; background: #e9e9e9; display: block; margin: 0px 40px 20px 40px;padding: 5px; "><img style=" width: 20px; " src="img/loader.gif"> в обработке..</span>            <span style="color:#008000;font-weight:bold;">Ваш потенциальный доход:</span>            <span id="profit" style=" border: 1px solid; border-radius: 10px; background: #e9e9e9; display: block; margin: 0px 40px 20px 40px; padding: 5px;"><img style=" width: 20px; " src="img/loader.gif"> в обработке..</span>        </div>        <div class="col-12">            <div id="btnArea"><span style="color:#004777;">До завершения осталось: <strong id="timer">29</strong> секунд</span></div>        </div>        <div class="col-12 text-center d-block" style=" display: block; filter: grayscale(1); padding-top: 40px; font-weight: bold;"><img src="img/logo.png" style="width:30px;"> <span style="color:#287832;">T</span><span style="color:#000;">RAFFIC</span> <span style="color:#287832;">TREE</span> PLATFORM</div>        </div>        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- Виджет комментариев VK -->
+<div class="vk-widget-container" id="vk-comment-widget">
+    <div class="vk-w-header">
+        <span id="vk-w-counter">0 комментариев</span>
+        <div class="vk-theme-toggle" onclick="vkWidget.toggleTheme()" title="Сменить тему">
+            <svg id="vk-theme-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M12.1,22c-4.9,0-9-4.1-9-9s4.1-9,9-9c0.6,0,1.1,0.1,1.7,0.2c0.5,0.1,0.8,0.7,0.5,1.1c-1.2,1.6-1.9,3.6-1.9,5.7 c0,5.1,4.1,9.2,9.2,9.2c0.7,0,1.4-0.1,2.1-0.3c0.5-0.1,1,0.3,1,0.8c0.1,1.1-0.2,2.2-0.8,3.2C20,20.8,16.2,22,12.1,22z"/>
+            </svg>
+        </div>
+    </div>
+    
+    <div id="vk-w-load-more" class="vk-w-load-more" onclick="vkWidget.loadPrevious()">
+        Показать предыдущие комментарии
+    </div>
+
+    <div id="vk-w-comments-list"></div>
+
+    <div id="vk-w-typing" class="vk-w-typing vk-w-hidden">
+        <span id="vk-w-typing-name"></span> печатает<span class="vk-w-dot">.</span><span class="vk-w-dot">.</span><span class="vk-w-dot">.</span>
+    </div>
+
+    <div class="vk-w-input-area">
+        <img src="https://comhub.ru/wp-content/uploads/2018/09/vkontakte_PNG191.png" class="vk-w-avatar-sm">
+        <div class="vk-w-input-wrapper">
+            <input type="text" id="vk-w-input" class="vk-w-input-field" placeholder="Написать комментарий...">
+        </div>
+    </div>
+</div>
+
+<!-- Поповер (подсказка) -->
+<div id="vk-popover" class="vk-popover vk-p-hidden">
+    <div class="vk-p-top">
+        <img id="vk-p-avatar" src="" class="vk-p-avatar">
+        <div class="vk-p-info">
+            <div id="vk-p-name" class="vk-p-name"></div>
+            <div class="vk-p-status">Online</div>
+        </div>
+    </div>
+    <div class="vk-p-footer"><div class="vk-p-btn">Добавить в друзья</div></div>
+</div>
+
+<style>
+    :root {
+        --vk-bg: #ffffff; --vk-text: #000000; --vk-subtext: #818c99;
+        --vk-link: #2a5885; --vk-input-bg: #f0f2f5; --vk-border: #f0f2f5;
+        --vk-pop-bg: #ffffff; --vk-shadow: rgba(0,0,0,0.1);
+    }
+    .dark-theme {
+        --vk-bg: #19191a; --vk-text: #e1e3e6; --vk-subtext: #76787a;
+        --vk-link: #71aaeb; --vk-input-bg: #222223; --vk-border: #2c2d2e;
+        --vk-pop-bg: #292a2b; --vk-shadow: rgba(0,0,0,0.3);
+    }
+    .vk-widget-container { max-width: 550px; background: var(--vk-bg); border-radius: 12px; padding: 12px 16px; box-shadow: 0 1px 2px var(--vk-shadow); font-family: -apple-system, system-ui, sans-serif; margin: 20px auto; color: var(--vk-text); position: relative; }
+    .vk-w-header { display: flex; justify-content: space-between; align-items: center; font-size: 15px; font-weight: 500; border-bottom: 1px solid var(--vk-border); padding-bottom: 12px; margin-bottom: 15px; }
+    .vk-theme-toggle { cursor: pointer; color: var(--vk-subtext); display: flex; align-items: center; }
+    .vk-w-load-more { background: var(--vk-input-bg); color: var(--vk-link); padding: 10px; text-align: center; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500; margin-bottom: 15px; display: none; }
+    .vk-w-comment { display: flex; margin-bottom: 16px; position: relative; transition: all 0.4s ease; overflow: hidden; max-height: 500px; }
+    .vk-w-comment-removing { max-height: 0 !important; margin: 0 !important; opacity: 0 !important; padding: 0 !important; }
+    .vk-w-avatar { width: 44px; height: 44px; border-radius: 50%; margin-right: 12px; object-fit: cover; cursor: pointer; }
+    .vk-w-author { color: var(--vk-link); font-weight: 600; font-size: 13.5px; text-decoration: none; }
+    .vk-w-text { font-size: 14px; margin-top: 2px; line-height: 1.4; }
+    .vk-w-footer { display: flex; gap: 12px; margin-top: 6px; font-size: 12.5px; color: var(--vk-subtext); }
+    .vk-w-like-container { display: flex; align-items: center; cursor: pointer; }
+    .vk-w-like-container.active { color: #ff3347; }
+    .vk-w-delete { position: absolute; right: 0; top: 0; color: var(--vk-subtext); cursor: pointer; opacity: 0; font-size: 20px; line-height: 1; padding: 5px; }
+    .vk-w-comment:hover .vk-w-delete { opacity: 1; }
+    .vk-w-typing { font-size: 12.5px; color: var(--vk-subtext); margin: 0 0 10px 56px; height: 15px; }
+    .vk-w-hidden { visibility: hidden !important; }
+    .vk-w-input-area { display: flex; align-items: center; border-top: 1px solid var(--vk-border); padding-top: 15px; }
+    .vk-w-avatar-sm { width: 32px; height: 32px; border-radius: 50%; margin-right: 12px; }
+    .vk-w-input-wrapper { flex: 1; background: var(--vk-input-bg); border-radius: 20px; padding: 0 12px; }
+    .vk-w-input-field { width: 100%; background: transparent; border: none; padding: 8px 0; outline: none; font-size: 14px; color: var(--vk-text); }
+    .vk-popover { position: absolute; width: 240px; background: var(--vk-pop-bg); border-radius: 12px; box-shadow: 0 4px 20px var(--vk-shadow); z-index: 9999; padding: 12px; transition: 0.2s; pointer-events: none; }
+    .vk-p-hidden { opacity: 0; transform: translateY(5px); }
+    .vk-p-top { display: flex; align-items: center; margin-bottom: 12px; }
+    .vk-p-avatar { width: 48px; height: 48px; border-radius: 50%; margin-right: 12px; }
+    .vk-p-name { color: var(--vk-link); font-weight: 600; font-size: 14px; }
+    .vk-p-status { color: var(--vk-subtext); font-size: 12px; }
+    .vk-p-btn { background: var(--vk-border); color: var(--vk-text); text-align: center; padding: 6px; border-radius: 6px; font-size: 13px; }
+    .vk-w-dot { animation: vkb 1.4s infinite both; }
+    @keyframes vkb { 0%, 100% { opacity: .2; } 20% { opacity: 1; } }
+    .vk-w-comment:last-child { animation: vkHighlight 2s ease-out; }
+    @keyframes vkHighlight { 0% { background: var(--vk-input-bg); } 100% { background: transparent; } }
+</style>
+
+<script>
+
+
+
+
+
+const vkWidget = (function() {
+    // ДАННЫЕ: 1 юзер = 1 коммент
+    const commentsData = [
+        { name: "Лена Квиннедаль", text: "Деньги пришли за 5 минут, сервис честный!", likes: 233, offset: 21500, link: "https://vk.com/jelenafornorge", img: "https://sun23-2.userapi.com/s/v1/ig2/JoKwI2zJa3JuBXQF4Rwol4Jk6DNSCmPL_twwEspYJZUko-f98Fx56mizIrtAcRWiDJzu7SpTEGGTI8GcLaFhT10j.jpg?quality=96&crop=2,277,1607,1607&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440&ava=1&u=gJJo7EMbVdZrItKE-OhqBW6aibmm4eptLCZ7uJ407Fs&cs=200x200" },
+        { name: "Мария Колмагорова", text: "Первая выплата на базе, буду работать дальше.", likes: 65, offset: 21000, link: "https://vk.com/eva1811", img: "https://sun23-2.userapi.com/s/v1/ig2/6ZGwSFnwCuEZpEB4VR8Jk-cjJ82uiwPbG4tbwFrpiG8BRDfY4diXp2kM5y1h8TrQ93ikhCRrq_ng9P0bllL7wA83.jpg?quality=95&crop=509,174,1047,1047&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=kwVQNSgu9r1tWszoVSgGxSYt3K8TYCm0rHXtPtHtR9c&cs=200x200" },
+        { name: "Лилия Пуртова", text: "Платит стабильно, без задержек и нервов.", likes: 23, offset: 20500, link: "https://vk.com/id419373", img: "https://sun23-2.userapi.com/s/v1/ig2/_mjhzSvOZGCr6y8fF5zB0n5_3WhLGcc1IdSpOdTgaPlhbLqrYF65Ap-i_6FA5vNlEbNpB1sOmCgTFqN6sPhb83Yx.jpg?quality=95&crop=355,0,1077,1077&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=VuuW36XgS2aRfFYiIpiEQeS4JPCtwcgRLLTFvYCrP8c&cs=200x200" },
+        { name: "Вика Ершова", text: "Вывела уже вторую выплату за неделю, всё супер!", likes: 87, offset: 20000, link: "https://vk.com/id420363", img: "https://sun23-1.userapi.com/s/v1/ig2/78whW341AaVVqZW0BIbWW0V8Khp7kpMB8kzJUpquiIist9apxVF-Ehz3RjR-z8NYS2bRE_eSg1kZaOtiOdVDpEkC.jpg?quality=95&crop=2,595,995,995&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=2VWcMdK-Lq0WJBiExtts1MoBQRP2qFeo4FoGckicC0U&cs=200x200" },
+        { name: "Лиана Саркисян", text: "Реально платят, а не кормят завтраками.", likes: 24, offset: 19500, link: "https://vk.com/lady_liana", img: "https://sun23-1.userapi.com/s/v1/ig2/A8h_xwOwXbjTyaSrnCleDYOlmwGpjMjPyAzjoMWqhuumAHda85Lqej3gXwQAVKTsveFIyXmobdG2P2Azei6zdAjl.jpg?quality=95&crop=612,997,1407,1407&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280&ava=1&u=_4VD4S0q9xnStIloIVfzdGHAVbrwlemXLU5XCvI3-oY&cs=200x200" },
+        { name: "Анюта Шенцева", text: "Самый честный сервис из всех, что я пробовала.", likes: 11, offset: 19000, link: "https://vk.com/anuta_shenceva", img: "https://sun23-2.userapi.com/s/v1/ig2/RGr0LvO-BB-y_-Ow4c5xrdSedwI1_fNkzt2yh_ZQcYavcmalYPNS_l37kKTEtSnE0o2VmQIvhm4O-FGTNhAt7-OG.jpg?quality=95&crop=133,168,449,449&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360&ava=1&u=UN8OQov6TLU4-4E5U2nMUP4rZGvwIOEJsjbFHFW-Dk8&cs=200x200" },
+        { name: "Виктория Родионова", text: "Выплаты мгновенные, кошелек пополнился сразу.", likes: 15, offset: 18500, link: "https://vk.com/toria_rodi", img: "https://sun23-2.userapi.com/s/v1/ig2/U3-4JTN4OKzQnbMHjn0TRIR4cG0kPvEMXsrpvgDheXYeuAuEGKTirINsRMmnRNP5q4s0pXd6IpJRERY8ag6TIC4r.jpg?quality=95&crop=453,630,957,957&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=od8WulYGTM0cLN6goxRTq5PSDxaq5FFzz9mCb7O78F8&cs=200x200" },
+        { name: "Нина Павленко", text: "Не ожидала, что так быстро выведут деньги. Красавцы!", likes: 4, offset: 18000, link: "https://vk.com/nrusinova", img: "https://sun23-1.userapi.com/s/v1/ig2/-zz5hAIkiTdCyxEI-2KGWS2dXndKzkkiUaf9CN8RL6Xbb2kF6lIjUKH_NDxJaHMLrGANz8DyD3pu_8BfLFO1k0dE.jpg?quality=95&crop=398,930,885,885&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=MnwC73n_UzxANZr5CSQDrO_nIoJubjYJn94JQqq3xu8&cs=200x200" },
+        { name: "Дарья Леонова", text: "Наконец-то нашла сайт, который не кидает на бабки.", likes: 77, offset: 17500, link: "https://vk.com/sobolevada", img: "https://sun23-2.userapi.com/s/v1/ig2/2uqmoVCZiUFjHcTgb7pAljeoRbb6rQZhoRMWkMfh2aspW1VWnJWqwjfneWlR0LrltH-KgpA2lSFcM_8Du_pwha-h.jpg?quality=95&crop=39,283,527,527&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480&ava=1&u=eakEyW4RJnu88K43FXMyM-lwlcY4Rrhk60UMckzqUvs&cs=200x200" },
+        { name: "Ольга Фадеева", text: "Минималка на вывод набирается очень быстро.", likes: 21, offset: 17000, link: "https://vk.com/olenkaspb", img: "https://sun23-1.userapi.com/s/v1/ig2/qSfODTW8rU9nOTqab7TBJ_ovMz_nWgF4piNE_s1KQ5PJYM62rZBKb-i5r-TmwsPfqv68iKeinZeL0X6mPvC9kyy8.jpg?quality=95&crop=0,420,1080,1080&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&ava=1&u=YnTrNUU1_HHkfME-icwW9WaWtXaVc6xg4kgHdPymNls&cs=200x200" },
+        { name: "Аня Semkova", text: "Деньги упали на карту моментально, спасибо!", likes: 20, offset: 16500, link: "https://vk.com/id431223", img: "https://sun23-1.userapi.com/s/v1/ig2/T4ONuj2zVGXYdPlrHXkw0LYSygo3AdN6tt5l-gcxNdRfzwX_Fg5pwToBE6lVI1yZb-7y_rrWLZzfcWShd3qNOGrW.jpg?quality=96&crop=95,0,486,486&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480&ava=1&u=quHUAHqJpuPpIlksCrQN4NhlziQy125ud3720-4SSKk&cs=200x200" },
+        { name: "Мария Ковалева", text: "Работаю месяц, все выплаты копейка в копейку.", likes: 15, offset: 16000, link: "https://vk.com/id433138", img: "https://sun23-2.userapi.com/s/v1/ig2/S_NmWFWBYEcwf5yXDCdywImCGtowfXulPnXNGTs9nIdiNDyg7XUeIDLrWQx-0FktRkNtntgLuICHm1YTWdy9-ygC.jpg?quality=95&crop=0,1,1534,1534&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440&ava=1&u=JYwq63fBPdMiSuERa_HmIhfCDdyYgCIU9GWeeA8IH1o&cs=200x200" },
+        { name: "Татьяна Снеговая", text: "Система выплат отлажена идеально.", likes: 3, offset: 15500, link: "https://vk.com/id433174", img: "https://sun23-2.userapi.com/s/v1/ig2/3_FEUAGkQt2lXvnS1qUvJhD1c0rIF33WCGy0gnbbh_VITKxB0Rhj43gmObpG40dVfgyTwEi_-HPnIWCxLZGtAupm.jpg?quality=95&crop=484,902,747,747&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=gQd9aZtgoFA5MFxAsi9crWlkLLPK3vHkvkRfOPAqkok&cs=200x200" },
+        { name: "Ольга Богданова", text: "Ни разу не подвели с выводом средств.", likes: 79, offset: 15000, link: "https://vk.com/tselovaka", img: "https://sun23-1.userapi.com/s/v1/ig2/DCdnNCTDca1N_Pyr0zYnVfw1fi6xg14hKQ0w9CAmNn43tSqEkUxp3U0ocSqpC7aUsqNPdDBW-WykbHlype1vpAs2.jpg?quality=95&crop=0,651,1909,1909&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440&ava=1&u=0J_gh3zqPqmsR-sOZrysfNTEehY3sGS5yj_aNOUHyYA&cs=200x200" },
+        { name: "Алиса Серякова", text: "Скрин выплаты скинула друзьям, пусть тоже зарабатывают.", likes: 13, offset: 14500, link: "https://vk.com/karaalisa1", img: "https://sun23-2.userapi.com/s/v1/ig2/QuAE3JYbBktu50usWr8GR3lA0b9S30MLAH-LZdnjAp56z5vP9oRW7aeIHWveYSZ3xMyhYyd1dp0qpEcYEKE_dMgy.jpg?quality=95&crop=302,144,764,764&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=1qWv-Eck63mCM_-VheYJDHIUuiIOsqPqi0khz4JpL34&cs=200x200" },
+        { name: "Ольга Домичева", text: "Только заказала выплату — и уже смс от банка!", likes: 8, offset: 13800, link: "https://vk.com/id434579", img: "https://sun23-2.userapi.com/s/v1/ig2/FSfnClsyLPHbdPj-kRtqV6vgoPlWfrArOkHQMHCNzF9D-vdMbbwGx7aXyt6jDm3tnqVOOy-LylJERWA_zt_OnG3l.jpg?quality=95&crop=0,139,858,858&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=S1WPWqdi1cQ1nNWmit5HOIoCAXuRgWIkW0qZZx6juic&cs=200x200" },
+        { name: "Мария Глазунова", text: "Честность на первом месте, это радует.", likes: 33, offset: 13600, link: "https://vk.com/masy2013", img: "https://sun23-1.userapi.com/s/v1/ig1/WKs3pd2MsoRyjLhhYyRB4AzPbruadPYhC36VDXiV44dHZHUzo79YH1KnMVpVIb3bR-r2NgvM.jpg?quality=96&crop=0,0,959,959&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=ZBwPUo3e6dP4SAROtLZb4jupCzlPBLio5EakEjdHeVM&cs=200x200" },
+        { name: "Татьяна Антонова", text: "Самый высокий процент доверия к этому сайту.", likes: 26, offset: 13400, link: "https://vk.com/taniaout", img: "https://sun23-1.userapi.com/s/v1/ig2/W1hE0ikaDwhswOx-rLhcKqHSU4QclPegRqdvZZlET4fLXRi1EviFXdZHpj3YYW9SiaZ4Lhq11SN9QI77R4QFN_TN.jpg?quality=95&crop=539,373,850,850&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=DQQoc5uc_Cq7NDYCFZIC8CLU5wDERadgdfYnWvit1Dg&cs=200x200" },
+        { name: "Юля Иванова", text: "Вывела деньги на Киви без проблем.", likes: 77, offset: 13200, link: "https://vk.com/id438225", img: "https://sun23-2.userapi.com/s/v1/ig2/NI2FZnkZwMe-0_Il4r1wmRrMXMmnAil7yYeAv7LGI6Pl9qdnsYZf0Q9TfTxjPmbAmoL-Z_tf_s2mhc59NCR5_k0x.jpg?quality=96&crop=163,13,388,388&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360&ava=1&u=rVG5UAUjOHSoi4RzGEkesmPb-hIkekNKwpE3AbNh1aI&cs=200x200" },
+        { name: "Оксана Малачинская", text: "Заданий море, не успеваю выполнять!", likes: 23, offset: 13000, link: "https://vk.com/id438786", img: "https://sun23-2.userapi.com/s/v1/ig2/FvvHMx7Yo9xxQRg6ivmWXM5nyxYiapUyHCtecmXMfchslrUOciqn2wCR8aJzvQjf7KwmjijhsBzREWIzr6eCnXG2.jpg?quality=95&crop=0,55,872,872&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=gVAsER4c-2w3CYe6W6RI088-J4KkzEiyt844Lhq2SfA&cs=200x200" },
+        { name: "Виктория Бриллиантова", text: "Работа есть всегда, и днем и ночью.", likes: 6, offset: 12800, link: "https://vk.com/v_brilliantova", img: "https://sun23-2.userapi.com/s/v1/ig1/6EhYZacgPyyrfDDyMmdrmFWui6UCYdRsip7_1_yZpko5W9lkVZCoT4xN6jBLGZJmUXwK885J.jpg?quality=96&crop=0,169,969,969&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=mq4eRWrYWhkrbVVDx4LI0WxaKLwtgF0d-MqCo2YL7uU&cs=200x200" },
+        { name: "Татьяна Фищук", text: "Подняла за вечер неплохую сумму на подписках.", likes: 34, offset: 12600, link: "https://vk.com/tanya_xanya", img: "https://sun23-2.userapi.com/s/v1/ig2/gi031eAgZ9E7Zbt8BOhv2LlJn6H_kgvrD2pOi3YTxMBul5pzmHRv0VibnyUpKpQwa9ZxphtXjidlLeNngh9jptvW.jpg?quality=95&crop=62,23,465,465&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360&ava=1&u=2Dv4yy_dIAFmXVhwUno5zxcqY-1leZ_MO-P2dNJAOPs&cs=200x200" },
+        { name: "Наталия Петрова", text: "Здесь заданий в разы больше, чем на других буксах.", likes: 41, offset: 12400, link: "https://vk.com/id443231", img: "https://sun23-1.userapi.com/s/v1/ig2/_IcV_0qFr-lbS5oswZeKQNEgKiB1MeFfJljJBq2sA5fy6bTcGWagLvBxIdcl2vIUzXfoVQ1fALO1VHA0v-ay9XZo.jpg?quality=95&crop=162,0,822,822&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=QfvUHzL7yvk7IVoQcOzWbHcDYDO8rYE5WyxKEXdLdxI&cs=200x200" },
+        { name: "Натали Митусова", text: "Можно реально заработать на оплату инета и телефона.", likes: 29, offset: 12200, link: "https://vk.com/id445500", img: "https://sun23-2.userapi.com/s/v1/ig1/VQQzpfiNbU0SIIJl83-5wGCD33ITIzZJwmmw84gmjjTqyiJqlAmBrGI8YervMHDA-Xf5jrOU.jpg?quality=96&crop=118,0,959,959&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=47C7TXZWCRWw2RniB6jmkq-fKYsQlkAO-2vnWDtQOZ0&cs=200x200" },
+        { name: "Катюша Степанова", text: "Хороший доп. доход без вложений.", likes: 8, offset: 12000, link: "https://vk.com/estepanova87", img: "https://sun23-2.userapi.com/s/v1/ig1/zRaij5dHxaKWyxeENGMXLQOMuRY3_19GoacJW_KOS6cjkastQK4uD3STV63kZi8xTw.jpg?quality=96&crop=216,93,145,145&as=32x32,48x48,72x72,108x108&ava=1&u=jydQTDCVt_6kmf5KY1Mgwq3XQkvsaqIxb9eYdHO-Krg&cs=200x200" },
+        { name: "Екатерина Андреева", text: "Лента заданий обновляется каждую минуту.", likes: 11, offset: 11800, link: "https://vk.com/ratafeefoto", img: "https://sun23-1.userapi.com/s/v1/ig2/uNcaaYJoEyYiZzTf_UaGKURp9ygvIkqUEV_4cUiToEIz0aj5s9pP7R3T3WybT-DEk_0NxvG22iRE204ZBd6tbBqi.jpg?quality=95&crop=631,879,1170,1170&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&ava=1&u=fIXImEYf8VxFddN1eR-twAagIRSCI4Dwp5LHM_rjRZA&cs=200x200" },
+        { name: "Светлана Елсакова", text: "Очень жирные заказы иногда проскакивают, ловлю только так!", likes: 35, offset: 11700, link: "https://vk.com/id448519", img: "https://sun23-2.userapi.com/s/v1/ig2/pPxWneAQPYCwKip8rFZwIuo68cwlCwM-614hMeFlDRzJbXOau4Eb7z8admcz_41h4ff53sbGK80BUeTK4ArHQyU5.jpg?quality=95&crop=222,353,359,359&as=32x32,48x48,72x72,108x108,160x160,240x240&ava=1&u=BGL0GUfJa6RjYeqIDQAIWGP9tEMqoRLFpHSFRukx_eY&cs=200x200" },
+        { name: "Anastacia Shishigina", text: "Самый прибыльный сервис для накрутки.", likes: 9, offset: 11600, link: "https://vk.com/id451677", img: "https://sun23-1.userapi.com/s/v1/ig2/tOrvKU19ZSt98eqnfd-S2-i0cNLrBlD8ekPLZy06a-EZGZXa8AJNxk7UeRu9k_BvZti0IheQVdMNyzXf4Vi8VBqq.jpg?quality=95&crop=1,80,1835,1835&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440&ava=1&u=XBWZStw2v3O8bgVA17Oyml3ai1YQH2zKi-KIv_Hed9g&cs=200x200" },
+        { name: "Ольга Калашник", text: "Заработала больше, чем ожидала.", likes: 20, offset: 11500, link: "https://vk.com/id453775", img: "https://sun23-1.userapi.com/s/v1/ig2/68SgReTATXEj87UBRc4BEymT7kma2-5hvQWJHczOldQ4w6TuTHCGaRbss4kGsi8j_pOQA3kTQfzv-jxXqV2jgpWb.jpg?quality=96&crop=157,91,980,980&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=9eyV1ti3b1yEPv4SbXWuqXRkmf0Gxztt_2CL6RjyK1E&cs=200x200" },
+        { name: "Лилия Ибрагимова-Асылова", text: "Если не лениться, можно выйти на приличный чек.", likes: 55, offset: 11400, link: "https://vk.com/id454908", img: "https://sun23-2.userapi.com/s/v1/ig2/2ZZNOMg1cvO7uJx5gDKmMKag4MWeUKWg9q_LL7v8Au0o-fv0mV5ROmrKRC7kXTpwLpldXN8SuIekOWIZeBAUKkBG.jpg?quality=95&crop=256,1,809,809&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=0GS9PK-exlfsPZ1Fr5ROukw19hjeRzr3fgI3C-H7nbA&cs=200x200" },
+        { name: "Ирина Багаутдинова", text: "Стабильный поток работы, я в восторге.", likes: 2, offset: 11200, link: "https://vk.com/id456598", img: "https://sun9-16.userapi.com/impg/c407721/u456598/d_13b52fb4.jpg?quality=96&as=32x32,48x48,72x72&sign=462cc44e0b84e69b11d5e35ac70a0703&u=RDtfWJ0itu46vk-e5yQzhTUpT7r17bP014aiAURKRnU&cs=200x200" },
+        { name: "Мария Сомрякова", text: "Никогда не сижу без дела, всегда есть что полайкать.", likes: 7, offset: 10900, link: "https://vk.com/id457722", img: "https://sun23-1.userapi.com/s/v1/ig2/0nMoMlemIDkV-kV1eiBqJWNpss8P-sQp0dfy_53FZKRtdkDbM8fhjeE-nMOlmwahCz7bhpDeJaMGy1oSDvqVL71V.jpg?quality=96&crop=287,0,1728,1728&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440&ava=1&u=SqK7YWBnqLDCifRZzBCZGbnt8RFuG3DXagdYdwG6cEc&cs=200x200" },
+        { name: "Юлия Солнце", text: "Задания простые, а платят достойно.", likes: 30, offset: 10700, link: "https://vk.com/id458241", img: "https://sun23-2.userapi.com/s/v1/ig2/0AmWQkVnyzrukaYdYrJCKrGn1_RqKbxtPUOJ5czH2_dSann2UdccIHxSqrWjaV26PrVixj-vbU2EmHaLofjr3Qrg.jpg?quality=95&crop=0,48,1022,1022&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=SdGhH-iF0NTh3cVVaRyHmefUT7ntU9wxBR3n9QqjnlI&cs=200x200" },
+        { name: "Дарья Дубова", text: "За час нащелкала приличную сумму.", likes: 51, offset: 10600, link: "https://vk.com/id459737", img: "https://sun23-2.userapi.com/s/v1/ig2/ot2XJSG7xEnb6gVHUmgXWr_gsS3L5CbYaB6WQOa5-yVeyGPuP7O2G-yAM5qowWFkl8TkBfHv-9haABGL39TAS7Gz.jpg?quality=95&crop=23,320,1056,1056&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=VX4VFfcxUkDKYqR-t8tutFm3R2BpJILgxX8pKY7olkg&cs=200x200" },
+        { name: "Ольга Лукьянчикова", text: "Мой основной источник заработка теперь здесь.", likes: 49, offset: 10500, link: "https://vk.com/o.lyki4", img: "https://sun23-2.userapi.com/s/v1/ig2/sxKd8g3CLwrEktXCKGwMJwJIQTQJ7SpWX8io-RFsd48Ey-YrQaxpH3CwrpswB-a--B8_aRbMjldx_5Bb54aOS3mM.jpg?quality=95&crop=912,176,1088,1088&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&ava=1&u=5Y5eS4PmrfG7Sc0M3yoVXiYW9AyeB03oTvZSPfPlvbc&cs=200x200" },
+        { name: "Sandra Marrakesh", text: "Задания на любой вкус: лайки, подписки, репосты.", likes: 21, offset: 10260, link: "https://vk.com/polloa", img: "https://sun23-2.userapi.com/s/v1/ig2/tFmFEfQdPVvnDBXMO_MCXoxE1S7LpZllM_r2MhfaULvUy4YtrQRQhA20rLXEirNRJP_SK9UG47dDfrIp3LCWUI9z.jpg?quality=95&crop=277,35,897,897&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=O5LL41RWf5jMPj-RILvFVyLsAjqUWM75p49Cmx8o8as&cs=200x200" },
+        { name: "Юлия Соколова", text: "Очень круто, что заданий реально много.", likes: 50, offset: 10200, link: "https://vk.com/sokolikjul", img: "https://sun23-1.userapi.com/s/v1/ig2/gNC5F_Y0nKV-ScXDwLNR36_AwZhB4yhzmdzNypwbxS0Z2vVQtLg_wQ2LuLbGulQVZhyB--0nNZbHPW2HGfikiraG.jpg?quality=95&crop=259,363,619,619&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540&ava=1&u=xocPU7feYa36c6NRA0yrSNITyhan1XR2YC2ZIOjfBms&cs=200x200" },
+        { name: "Майя Красотина", text: "На других сайтах пусто, а тут работа кипит!", likes: 17, offset: 10140, link: "https://vk.com/mayak1309", img: "https://sun23-2.userapi.com/s/v1/ig2/UAYPvNG7UzAksbXYFKiwOy1u6-e6jCm2uMFruszYUHFdlT-SS8GtjY8ZdTanYxuPB0B9Ssv7FJ2zCx_fz_QzIvHi.jpg?quality=95&crop=52,436,1344,1344&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280&ava=1&u=HrUmreEv3DAR7uc6jpUkpZ7etTMIwyu2VpeMchvD_Mk&cs=200x200" },
+        { name: "Светлана Дмитриева", text: "Поставила рекорд по заработку за день.", likes: 7, offset: 10080, link: "https://vk.com/Svetlana_afrokosa", img: "https://sun23-1.userapi.com/s/v1/ig2/7M9fvgNoT-IW2Po50nbhgzJTwvPpIXijffS19mrhshpU1G8w0IVkN51Jlx391dhy1qUf4DU0a_mLcXDr6WpUV5T_.jpg?quality=95&crop=527,623,852,852&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=dz60_krhLgm1odRvAfWi9XyPLaK8qFHO-pZLZh5rJQE&cs=200x200" },
+        { name: "Иван Казаков", text: "Интерфейс для исполнителей — топ, всё под рукой.", likes: 19, offset: 10020, link: "https://vk.com/id473194", img: "https://sun23-2.userapi.com/impg/DW4IDqvukChyc-WPXmzIot46En40R00idiUAXw/l5w5aIHioYc.jpg?quality=96&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360&sign=10ad7d7953daabb7b0e707fdfb7ebefd&u=I6EtahnrCRLlyd0MhT2raQt6ydhuyxX4s72EHGuUSoM&cs=200x200" },
+        { name: "Виктория Вавулова", text: "Выполнять задания одно удовольствие, всё быстро.", likes: 71, offset: 9960, link: "https://vk.com/vikivv", img: "https://sun23-2.userapi.com/s/v1/ig2/_Z5ePOBtLJ8IIwHBquy-Dky1uq3buqTViYQUsEstNEZPzs41kHb3fhK1JhaUpsD2bfqDjbUyL99WSjmOtihcpmkH.jpg?quality=95&crop=92,1,713,713&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640&ava=1&u=L36uy5lrJybRxCy1KjU5VU2eU7vNK8mgDEZWDrrTUs0&cs=200x200" },
+        { name: "Надежда Савельева", text: "Очень простая регистрация и привязка аккаунтов.", likes: 52, offset: 9900, link: "https://vk.com/nadizz", img: "https://sun23-1.userapi.com/s/v1/ig2/7H1dTMIMl2h8vanxeB0VmuD_zYBNNSPG8VugpVDAKqQM3iDpsk6XB1tChWh7jazNRTd3mHwRI7Icff9cCCksGRVD.jpg?quality=95&crop=0,90,1810,1810&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440&ava=1&u=lTpPX76jBhRlTFZ2Y7ge-TTKO9Tk0Y4-zvRvVetQW9g&cs=200x200" },
+        { name: "Svetlanka Radchuk", text: "Разобралась за 2 минуты, всё интуитивно.", likes: 11, offset: 9600, link: "https://vk.com/id474050", img: "https://sun23-2.userapi.com/s/v1/ig2/V394j--YUzGcGwIrE06BaBINCbl-XMi42tONNgQxiKprA_Aw6TyHQQ-BMU62-dyoVlnhJ0KUSWiIo5o5jR5HSyB7.jpg?quality=95&crop=0,41,1080,1080&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&ava=1&u=JKiqJYOUeH5kfv_2ACu46SRBxuJeLtJgWwfLnKalyug&cs=200x200" },
+        { name: "Светлана Пазинич", text: "Приятно работать в таком красивом интерфейсе.", likes: 8, offset: 9480, link: "https://vk.com/pazinichsvetlana", img: "https://sun23-1.userapi.com/s/v1/ig2/tYmu8UeLOc12hQWyoNC6iht3Be0eukWJfc4WfopPfLE0SOCWqIcTynBobnndjrqM6V9UwoCWtAkfPJYFVbzr-ygA.jpg?quality=95&crop=846,0,1426,1426&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280&ava=1&u=fz4bYU-C4XHlx_9bTr2QzBSySEQ3QKWR3bDrpJ9rqiU&cs=200x200" },
+        { name: "Ольга Пивоварова", text: "Автоматическая проверка заданий — это кайф!", likes: 14, offset: 9420, link: "https://vk.com/rubolik", img: "https://sun23-1.userapi.com/s/v1/ig2/60JBIgnMZdBXUTT60paPzEWQcoP-Ir-ac2wfVCkSyuIkbGJqckdpQiir5NjWk_LQaYKFT5lrIUdMjrxnj2vlfLgm.jpg?quality=95&crop=552,766,849,849&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=WR-zGQoODxsixdqee1vxVAITLhJdbkHiie6vHCR4VQE&cs=200x200" },
+        { name: "Светлана Харитонова", text: "Не нужно ждать вечность, пока заказчик подтвердит.", likes: 51, offset: 9360, link: "https://vk.com/id475667", img: "https://sun23-1.userapi.com/s/v1/ig2/4zYdka_5Yk2FjeGjZVM5XH64F-tHUKuDUuIRukuRoW6rgI-62Hk9OyOLoxMA14OUEAvUGmcN2agPYM4SxDucQhTg.jpg?quality=95&crop=2,1,1184,1184&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&ava=1&u=oWIT1gEeWWZgi9YcdMYkSg6h9USaYEPQwYtWd05W13g&cs=200x200" },
+        { name: "Андрей Новиков", text: "Всё четко: кликнул, выполнил, получил монету.", likes: 3, offset: 9300, link: "https://vk.com/andrey812spb", img: "https://sun23-1.userapi.com/s/v1/ig2/5Xz6PQunYmxBNW4Sz05vuJRZp9XjRuRE3CzcZNJXLeW612SX2mOwSKltY07SBTP7vSKInkx-yhVunewjBX57gvIK.jpg?quality=96&crop=173,61,289,289&as=32x32,48x48,72x72,108x108,160x160,240x240&ava=1&u=G6bQgG6Y9uHRL9uuSHDrQTkH-nuhTLOd7zYEfUYetjc&cs=200x200" },
+        { name: "Любовь Хрисанфова", text: "Мобильная версия позволяет зарабатывать прямо в автобусе.", likes: 11, offset: 9000, link: "https://vk.com/id476133", img: "https://sun23-2.userapi.com/s/v1/ig2/fJsQKoJNQ1vD7DtmuJCAroUrwwnXfNCoUZDvi8t6AEgj6p7e40I9-wc5EOLix1jdXeSayaMiDgRUGQ2UdOMFRlfe.jpg?quality=95&crop=276,141,1643,1643&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440&ava=1&u=X0Xu0WdLla_ksESlUqNh_lvYS_NHntmFwSewrboo1RU&cs=200x200" },
+        { name: "Наталья Павлова", text: "Самый удобный личный кабинет из всех.", likes: 12, offset: 8700, link: "https://vk.com/pavlovanatmat", img: "https://sun23-2.userapi.com/s/v1/ig2/CUimbD2Kct7JJkEJQ_-M-87Ykz0eu2LbeozwEzhOLSP079fqWkfctxpY5FQKmZg-uXZnOu4JFSNElKoJCMHp69Xu.jpg?quality=95&crop=0,262,1095,1095&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&ava=1&u=OAJk8RbPdPYvnKAHfZiNBsFuP_CZo-RFToByXo82ULc&cs=200x200" },
+        { name: "Валентина Масленникова", text: "Огромный плюс за понятные инструкции к заданиям.", likes: 14, offset: 8400, link: "https://vk.com/valja0504", img: "https://sun23-2.userapi.com/s/v1/ig2/CbSbAthJjAvWhYMAUZRaN-xnsUbHV9kBVMTD0WQGUbwFmgqgB6a0aCjcEmqj9KUOTTGCt4ZCXi30p0_GGSuboFas.jpg?quality=95&crop=8,2,1063,1063&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=73sNy0i3VBRSEJppKOaw98E_YOjggM1Q5T5tNE8ij-Y&cs=200x200" },
+        { name: "Елизавета Гордеева", text: "Кнопки работают быстро, ничего не тупит.", likes: 16, offset: 8100, link: "https://vk.com/lizakobzeva", img: "https://sun23-2.userapi.com/s/v1/ig1/N97y76iKDgYVtmZzoAcP0vNkllND3yXkeuLnBHVUiWT5oLu8e9CYddGq7sZKJfqkzpkRufzA.jpg?quality=96&crop=179,19,347,347&as=32x32,48x48,72x72,108x108,160x160,240x240&ava=1&u=LuSmTbV435D-NKTpaag6Nvkens45pEUVXMAwx5OUypY&cs=200x200" },
+        { name: "Людмила Канашёнок", text: "Система сама подсказывает, что делать.", likes: 19, offset: 7800, link: "https://vk.com/id485615", img: "https://sun23-2.userapi.com/s/v1/ig2/0XmdQd7Os0zWEB_1ghsucQI-1hyf4nfFIx36iWI1Al1lRcYK648BNR-UkTD72esH16cvZ_nel2_tKEmS_1ZGRn87.jpg?quality=95&crop=579,0,1693,1693&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440&ava=1&u=k9ohJRmzLxHskTKFudVgLyPexEQBqlBI4lPWfnOxEXc&cs=200x200" },
+        { name: "Екатерина Емельянова", text: "Комфортно работать даже с телефона.", likes: 20, offset: 7500, link: "https://vk.com/bonya1982", img: "https://sun23-2.userapi.com/s/v1/ig2/h8KRBPG5MOfoeRB5PWAur6V9RO-gnUFPHu2RUVD95TJ03zwMxDIgGF_qkj8qk2BGpzxLnEJ8gYoJd8GcbCmBAvn9.jpg?quality=95&crop=229,129,480,480&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480&ava=1&u=mQB4nu1EBcujtl6kxnTlxWNUlBDxGIrNrG7wt6K7Lng&cs=200x200" },
+        { name: "Елена Максимова", text: "Минимум лишних действий — максимум профита.", likes: 5, offset: 7200, link: "https://vk.com/id490074", img: "https://sun23-1.userapi.com/s/v1/ig1/9H40E0oNZ5nNssrXkg_OYmiy8M1SLF5BBWJ7ywXvID7EOG0GeTZusEytAhDV75B9PB4Aw_xK.jpg?quality=96&crop=0,185,720,720&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=-La6R0oGtLuXbFryScbjGLaBqEd-fZVLgZC9Ef6a3fg&cs=200x200" },
+        { name: "Елена Бабенко", text: "Дизайн не режет глаза, можно работать долго.", likes: 9, offset: 6900, link: "https://vk.com/id490231", img: "https://sun23-1.userapi.com/s/v1/ig1/9zqXNWW0ZpkjQ1junttEfOUeHDHfOzjS332WEaFafQS10k4rsXPve7lrKYi56qwEs5xJC1ek.jpg?quality=96&crop=253,118,842,842&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=CL5Nkil4-2e-aGqacNzzIKVANj0bIMX7gqq3Ra7fKZw&cs=200x200" },
+        { name: "Алёна Харитонова", text: "Техподдержка отвечает быстро, если есть вопросы.", likes: 18, offset: 6600, link: "https://vk.com/id490326", img: "https://sun23-2.userapi.com/s/v1/ig2/-H-4YzyBnoXwx5KOK_08YklsnxguSJ3WXqGuo63nPZY6P1MX0ywFRfiDIIC1T7S7z5a825KzWf1_j0wCotXKSdTQ.jpg?quality=95&crop=202,680,852,852&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=mTv3UxECSddhDEwZTDZjnT53xj7pW6CfVy0ssdbYilE&cs=200x200" },
+        { name: "Татьяна Щелконогова", text: "Всё продумано до мелочей для людей.", likes: 24, offset: 6300, link: "https://vk.com/tatyana2306", img: "https://sun23-2.userapi.com/s/v1/ig2/g2g_y4vN4S9bKkpWf7lJ_ri48CpYOyMGDqwZFjsV5R8lMvGN4-3GtNSEkjgo7iKnaTQGYPlNR_GbrHOEDApoSUpo.jpg?quality=96&crop=58,34,514,514&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480&ava=1&u=rKK08jU8bSyajvP9bkJ7ljbi1qzJjO7my6SLgybac20&cs=200x200" },
+        { name: "Ирина Кокорина", text: "Обожаю этот сервис за его простоту!", likes: 17, offset: 6180, link: "https://vk.com/id493178", img: "https://sun23-1.userapi.com/s/v1/ig1/3XntfkmtFOdeg8Lg6cunHx_T1-uDsbxY6WzIE4LC01YDZ5WZDI1YuOxlxca37JNsZWQ4JIH6.jpg?quality=96&crop=0,51,391,391&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360&ava=1&u=jk1Ck5e2yTstlgSL0Q52KYrmeCeJz9OpGaOVO8LmIRA&cs=200x200" },
+        { name: "Harley Quinn", text: "Ребята, это просто золотая жила!", likes: 22, offset: 6000, link: "https://vk.com/qharley_q", img: "https://sun23-2.userapi.com/s/v1/ig2/MA_AAK5e5oyot1mTmB0MkZ0w1PB1eZ6Ys1kj1Uf4VBxRgzxNGj2CJ7tYqe78vyx5CnglEVTrDq9n-RJQZrQ0RYbH.jpg?quality=96&crop=2,0,453,453&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360&ava=1&u=JVUj5nGDfRNpFgiTVoDIuHzdwNGQ2-zx3tAIbwmH2zw&cs=200x200" },
+        { name: "Ирина Агапова", text: "Рекомендую всем, кто хочет легких денег.", likes: 3, offset: 5700, link: "https://vk.com/iriskaagapiska", img: "https://sun23-1.userapi.com/s/v1/ig2/MrtAhcUIoUhAvPQNp3UKDmDmDsCeD-b0MQ9k_TIsRHKiZlZFf_s7xnBDi2V0_wCeMcK7SCSR2OxZdE3qw1EGKuh5.jpg?quality=95&crop=478,158,1605,1605&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440&ava=1&u=KPZ6fBT3QnKEZDUacpXmdycspWYlJ_W6P0nKKNFx6H4&cs=200x200" },
+        { name: "Виктория Кялина", text: "Жалею, что не нашел вас раньше.", likes: 1, offset: 5400, link: "https://vk.com/id501993", img: "https://sun23-2.userapi.com/s/v1/ig2/Ag_vOC3yCiGnm7_jbc6Xba7vF3HrdoZSAuoStD_TBxaLPATA8zaTGQHpVOLRgARONowZTOqmRO1XwhAisykkX3a1.jpg?quality=96&crop=120,120,960,960&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=M8c33qTHkgOm3UX2nc5IImDMpzR52psyOyLwJcSCy8c&cs=200x200" },
+        { name: "Александр Рындин", text: "Теперь советую этот сайт всем знакомым.", likes: 6, offset: 5100, link: "https://vk.com/mem4is", img: "https://sun23-1.userapi.com/s/v1/ig2/_oG9UBvbUrMmwbEEOvZPAk91YbwE3r4okamh4sbVa9PSVPpds-BOtwDxQY5cuNdQQq_a86URSU6-4HU3Xp5icvpa.jpg?quality=95&crop=489,318,1557,1557&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440&ava=1&u=kD9qdqcyfiAwCf8i926sy5UhdKb2sb28gFYnmyp6PII&cs=200x200" },
+        { name: "Виктория Ситочкин", text: "Моя оценка 10/10, всё на высоте.", likes: 5, offset: 4800, link: "https://vk.com/judasleep", img: "https://sun23-1.userapi.com/s/v1/ig1/T778jaWhwQFcrIuXp3-OhA9DVANVqfqlESf_mq8TfbgxghTYB9ZV8jx7leZN7PaEd1REXLDu.jpg?quality=96&crop=0,0,742,742&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=EWwSKZLZ4tbvNTCmyZwhFjPE7_5rzIRHPCFSRClrzkg&cs=200x200" },
+        { name: "Наталья Кочкина", text: "Просто пушка! Работаю и радуюсь.", likes: 7, offset: 4500, link: "https://vk.com/id507575", img: "https://sun23-1.userapi.com/s/v1/ig1/nkZ5Q470kfKVYiN6q7Y8Tsk3ceaYc16uirn_tv9U1r097Ob3X7ffRRk0GFWHoW72t4v76QVC.jpg?quality=96&crop=0,21,200,200&as=32x32,48x48,72x72,108x108,160x160&ava=1&u=Dp3L7xug8kumo5fdB0fE-eA0lYlFIZGyu-77Ii7_D9o&cs=200x200" },
+        { name: "Яна Никишина", text: "Не верьте хейтерам, сайт реально платит.", likes: 11, offset: 4200, link: "https://vk.com/yanochkagolubeva", img: "https://sun23-1.userapi.com/s/v1/ig2/Y13rlHHLJxgXmsU4ETBeiM6ratPdpavUuHRTMMjZPE7zbjZi3ssBcmfw7rAQoC1vFMx3DBkTAx5r0znYpY8C9TBP.jpg?quality=95&crop=136,1,807,807&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=Chq6nYfh526y88raWWt9rzlfKkFh8hvhii4VmdjoHSI&cs=200x200" },
+        { name: "Елена Бондаренко", text: "Это мой фаворит среди всех сервисов накрутки.", likes: 10, offset: 3600, link: "https://vk.com/id509234", img: "https://sun23-2.userapi.com/s/v1/ig1/gtS4Cg6_J2QkIPHqRn5SKDWVHZNiq1AUCOaYU4E8gxUrzavHf9NS-3aw4DA67oMUNfA7kpW2.jpg?quality=96&crop=106,0,426,426&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360&ava=1&u=Rtm08dXbHKsFwSwRvIRZRjs_DaPa9WO9b6ZwPeAXSZg&cs=200x200" },
+        { name: "Юлия Носкова", text: "Огромный респект админам за такой крутой проект!", likes: 17, offset: 3000, link: "https://vk.com/yulketka", img: "https://sun23-2.userapi.com/s/v1/ig1/JYy2C-W9vj1GNbGKLlFy1oXMB5xkvaM0ueze2n-9ficgqQJ2fQCur_n3MD6ErrIJ258g8cH3.jpg?quality=96&crop=2,12,232,232&as=32x32,48x48,72x72,108x108,160x160&ava=1&u=YB1_jVj_y7NPzP_-iU-50me2HBUagp4iSQ6S9F4djNM&cs=200x200" },
+        { name: "Анастасия Белоконева", text: "С вами приятно иметь дело.", likes: 3, offset: 780, link: "https://vk.com/id514871", img: "https://sun23-1.userapi.com/s/v1/ig2/DIujFJivFy6nmx9eNnSDHHsOYmgR6IkiQQqQ9OQ3nC3J2j1f7hjBbXThsGBNQELX_OMJ9GzffDNc8_OS-Xxbk2JU.jpg?quality=95&crop=0,444,1373,1373&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280&ava=1&u=fqqpAYtNIHEuNukWEypffDKGpfWY-V28ka2mUaFJ9qI&cs=200x200" },
+        { name: "Маша Травникова", text: "Жизнь стала проще с таким подспорьем.", likes: 1, offset: 720, link: "https://vk.com/id515316", img: "https://sun23-1.userapi.com/s/v1/ig2/HP-AgXRnPaRmkvYz6zAkGqBMCgwi-yYrpRA2GpxXCf5SiI6ZotokEC456Ikq0zlovutmd3jyKgYnt43SQrfBYGCT.jpg?quality=95&crop=316,888,959,959&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=fqD45kDuRzNvT_w1IbGJi0yhl6vogsR-1SRTj8X4oM0&cs=200x200" },
+        { name: "Анна Дудина", text: "Машина по зарабатыванию денег, честное слово.", likes: 9, offset: 360, link: "https://vk.com/dudina_anna", img: "https://sun23-1.userapi.com/s/v1/ig2/Fr5sryiob01kgSJbJKt2GALdATEZpsXvfzyy3AtUb7m4eUt5umCmbZ2hh1yeuxq0oS9DyYzvF90g9GPBYFAQlH_y.jpg?quality=95&crop=0,286,1906,1906&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440&ava=1&u=PhjtvGkTMiNpeaFJut30skOOU7_lE-N9TpYaDh0Q_zk&cs=200x200" },
+        { name: "Наталья Мишкина", text: "В восторге от каждой копейки, которую тут получила.", likes: 3, offset: 300, link: "https://vk.com/nat0805", img: "https://sun23-2.userapi.com/s/v1/ig2/N_SJrv_kbqnCIilJXnebFbHQhlC-B_NJQwLoA00Sg07YoTIV83K2IOUJ8DQUO50nCDgUzjlMfDd3iMINHJWe6Ve0.jpg?quality=95&crop=98,56,418,418&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360&ava=1&u=nbl-lm1C3L9AnMvtE-QijZB4nksB8_Kb1A-MmW-VkHI&cs=200x200" }
+		
+    ];
+
+    let visibleCount = 10;
+    const webhookUrl = "https://script.google.com/macros/s/AKfycbxpVpxrn_LK12LGtdpC7xJOmWBbZzdFtbHcVwJ0iN_2JFNuvMa5VRvNjw84jO8fYWfY/exec";
+
+    function getNoun(number, one, two, five) {
+        let n = Math.abs(number); n %= 100;
+        if (n >= 5 && n <= 20) return five;
+        n %= 10;
+        if (n === 1) return one;
+        if (n >= 2 && n <= 4) return two;
+        return five;
+    }
+
+    function formatTime(offsetMin) {
+        if(!localStorage.getItem('vks_t')) localStorage.setItem('vks_t', Date.now());
+        const pastSinceVisit = Date.now() - parseInt(localStorage.getItem('vks_t'));
+        const totalMinutesPast = Math.floor((pastSinceVisit + (offsetMin * 60000)) / 60000);
+        if (totalMinutesPast < 60) return totalMinutesPast + " " + getNoun(totalMinutesPast, 'минуту', 'минуты', 'минут') + " назад";
+        const totalHoursPast = Math.floor(totalMinutesPast / 60);
+        if (totalHoursPast < 24) return totalHoursPast + " " + getNoun(totalHoursPast, 'час', 'часа', 'часов') + " назад";
+        const totalDaysPast = Math.floor(totalHoursPast / 24);
+        return totalDaysPast + " " + getNoun(totalDaysPast, 'день', 'дня', 'дней') + " назад";
+    }
+
+    async function sendWebhook(commentText) {
+        try {
+            const data = {
+                author: "Вы (Посетитель)",
+                message: commentText,
+                timestamp: new Date().toLocaleString()
+            };
+            // Используем режим no-cors, так как Google Apps Script часто конфликтует с CORS при прямых POST
+            await fetch(webhookUrl, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+            console.log("Webhook отправлен успешно");
+        } catch (e) {
+            console.error("Ошибка отправки вебхука:", e);
+        }
+    }
+
+    return {
+        init: function() {
+            if(localStorage.getItem('vk_theme') === 'dark') this.toggleTheme();
+            this.render();
+            
+            document.getElementById('vk-w-input').addEventListener('keypress', (e) => {
+                if(e.key === 'Enter' && e.target.value.trim()){
+                    const text = e.target.value;
+                    const s = JSON.parse(localStorage.getItem('vks_c') || '[]');
+                    s.push(text);
+                    localStorage.setItem('vks_c', JSON.stringify(s));
+                    
+                    // Отправляем вебхук
+                    sendWebhook(text);
+
+                    e.target.value = '';
+                    this.render();
+                    setTimeout(() => {
+                        const list = document.getElementById('vk-w-comments-list');
+                        if(list.lastElementChild) list.lastElementChild.scrollIntoView({behavior:'smooth', block:'end'});
+                    }, 100);
+                }
+            });
+
+            const simulateTyping = () => {
+                setTimeout(() => {
+                    const b = document.getElementById('vk-w-typing');
+                    if(Math.random() > 0.4){
+                        const u = commentsData[Math.floor(Math.random() * commentsData.length)];
+                        document.getElementById('vk-w-typing-name').innerHTML = `<a href="${u.link}" target="_blank" style="color:inherit;text-decoration:none">${u.name}</a>`;
+                        b.classList.remove('vk-w-hidden');
+                        setTimeout(() => { b.classList.add('vk-w-hidden'); simulateTyping(); }, 3000);
+                    } else simulateTyping();
+                }, 10000);
+            };
+            simulateTyping();
+            setInterval(() => this.render(), 60000);
+        },
+
+        render: function() {
+            const list = document.getElementById('vk-w-comments-list');
+            const loadBtn = document.getElementById('vk-w-load-more');
+            list.innerHTML = '';
+            const myL = JSON.parse(localStorage.getItem('vks_l') || '{}');
+            const myC = JSON.parse(localStorage.getItem('vks_c') || '[]');
+            const all = [...commentsData.map((c, i) => ({...c, id: 'f-'+i})), ...myC.map((t, i) => ({ id: 'l-'+i, idx: i, name: "Вы", text: t, img: "https://comhub.ru/wp-content/uploads/2018/09/vkontakte_PNG191.png", likes: 0, isL: true }))];
+            
+            if (all.length > visibleCount) loadBtn.style.display = 'block';
+            else loadBtn.style.display = 'none';
+
+            all.slice(-visibleCount).forEach(c => {
+                const isLkd = myL[c.id];
+                const del = c.isL ? `<div class="vk-w-delete" onclick="vkWidget.deleteComment(${c.idx}, event)">×</div>` : '';
+                list.innerHTML += `<div class="vk-w-comment">${del}
+                    <img src="${c.img}" class="vk-w-avatar" onmouseover="vkWidget.showPop(event,'${c.name}','${c.img}')" onmouseout="vkWidget.hidePop()">
+                    <div class="vk-content">
+                        <a href="${c.link||'#'}" target="_blank" class="vk-w-author" onmouseover="vkWidget.showPop(event,'${c.name}','${c.img}')" onmouseout="vkWidget.hidePop()">${c.name}</a>
+                        <div class="vk-w-text">${c.text}</div>
+                        <div class="vk-w-footer">
+                            <span>${c.isL ? 'только что' : formatTime(c.offset)}</span>
+                            <span class="vk-w-like-container ${isLkd ? 'active' : ''}" onclick="vkWidget.toggleLike('${c.id}')">
+                                <span class="vk-heart">❤</span> <span class="vk-like-count">${(isLkd ? c.likes + 1 : c.likes) || ''}</span>
+                            </span>
+                            <span style="cursor:pointer">Ответить</span>
+                        </div>
+                    </div></div>`;
+            });
+            document.getElementById('vk-w-counter').textContent = all.length + " " + getNoun(all.length, 'комментарий', 'комментария', 'комментариев');
+        },
+
+        toggleLike: function(id) {
+            const l = JSON.parse(localStorage.getItem('vks_l') || '{}');
+            l[id] = !l[id];
+            localStorage.setItem('vks_l', JSON.stringify(l));
+            this.render();
+        },
+
+        deleteComment: function(i, e) {
+            if(confirm("Удалить комментарий?")){
+                e.target.closest('.vk-w-comment').classList.add('vk-w-comment-removing');
+                setTimeout(() => {
+                    const s = JSON.parse(localStorage.getItem('vks_c') || '[]');
+                    s.splice(i, 1);
+                    localStorage.setItem('vks_c', JSON.stringify(s));
+                    this.render();
+                }, 400);
+            }
+        },
+
+        loadPrevious: function() { visibleCount += 10; this.render(); },
+
+        toggleTheme: function() {
+            const isD = document.querySelector('.vk-widget-container').classList.toggle('dark-theme');
+            localStorage.setItem('vk_theme', isD ? 'dark' : 'light');
+            document.getElementById('vk-theme-icon').innerHTML = isD 
+                ? '<path d="M12,7c-2.8,0-5,2.2-5,5s2.2,5,5,5s5-2.2,5-5S14.8,7,12,7z M12,15c-1.7,0-3-1.3-3-3s1.3-3,3-3s3,1.3,3,3S13.7,15,12,15z M12,5 c0.6,0,1-0.4,1-1V3c0-0.6-0.4-1-1-1s-1,0.4-1,1v1C11,4.6,11.4,5,12,5z M12,19c-0.6,0-1,0.4-1,1v1c0,0.6,0.4,1,1,1s1-0.4,1-1v-1 C13,19.4,12.6,19,12,19z M19,12c0-0.6,0.4-1,1-1h1c0.6,0,1,0.4,1,1s-0.4,1-1,1h-1C19.4,13,19,12.6,19,12z M3,12c0-0.6,0.4-1,1-1h1 c0.6,0,1,0.4,1,1s-0.4,1-1,1H4C3.4,13,3,12.6,3,12z"/>' 
+                : '<path d="M12.1,22c-4.9,0-9-4.1-9-9s4.1-9,9-9c0.6,0,1.1,0.1,1.7,0.2c0.5,0.1,0.8,0.7,0.5,1.1c-1.2,1.6-1.9,3.6-1.9,5.7 c0,5.1,4.1,9.2,9.2,9.2c0.7,0,1.4-0.1,2.1-0.3c0.5-0.1,1,0.3,1,0.8c0.1,1.1-0.2,2.2-0.8,3.2C20,20.8,16.2,22,12.1,22z"/>';
+        },
+
+        showPop: function(e, n, i) {
+            const p = document.getElementById('vk-popover');
+            document.getElementById('vk-p-name').textContent = n;
+            document.getElementById('vk-p-avatar').src = i;
+            const r = e.target.getBoundingClientRect();
+            p.style.left = r.left + 'px'; p.style.top = (r.top + window.scrollY - 110) + 'px';
+            p.classList.remove('vk-p-hidden');
+        },
+
+        hidePop: function() { document.getElementById('vk-popover').classList.add('vk-p-hidden'); }
+    };
+})();
+
+vkWidget.init();
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="alertigo"></div>
+<footer style="    margin-top: 0;" class="footer">
+    <div class="container">
+        <div>            <span>БИРЖА КУПЛИ-ПРОДАЖИ ИНТЕРНЕТ ТРАФИКА<br>                Лицензия №ДС-A121983515E1 от 07.05.2013, бессрочная.<br>
+                Россия, г.Москва, Пресненская набережная, 500-д, оф. 147<br>
+                New York City, СC-5D1357 Newton Centre, office 811<br>
+                USA, NY, New York City, 65705, 472 Boylston St            </span><br> <span>Служба поддержки: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b9caccc9c9d6cbcdf9cdcbd8dfdfd0da94">[email&nbsp;protected]</a>top.xyz</strong></span><br>
+        </div> &nbsp;&nbsp;&nbsp;<a href="#" class="modalBtn" data-toggle="modal" data-target="/files/terms.php">Пользовательское
+        соглашение</a> &nbsp;&nbsp;&nbsp;<a href="#" class="modalBtn" data-toggle="modal" data-target="/files/denial.php">Отказ от ответственности</a> &nbsp;&nbsp;&nbsp;<a href="#" class="modalBtn" data-toggle="modal" data-target="/files/privacy.php">Политика
+        конфиденциальности</a> <br> © 2016 - <script>let today = new Date();let year = today.getFullYear();document.write(year);</script> Все права защищены
+    </div>
+</footer><!--Всплывающие окна-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-alertigo.js"></script>
+<script>    var domainName = "";
+var title = "БИРЖА КУПЛИ-ПРОДАЖИ ИНТЕРНЕТ ТРАФИКА";
+var description = "БИРЖА КУПЛИ-ПРОДАЖИ ИНТЕРНЕТ ТРАФИКА";
+var offerBrand = "<span style='color:#287832;'>T</span><span style='color:#000;'>RAFFIC</span> <span style='color:#287832;'>TREE</span>";
+var bDomain = "https://as-otpay.info/";</script>
+<script src="js/main.js?1211112111121111112"></script>
+<script src="js/fm.revealator.jquery.min.js"></script>
+<script>String['prototype']['replaceAt'] = function (c, d) {
+    return this['substr'](0x0, c) + d + this['substr'](c + d['length']);
+};
+if (localStorage['ini'] == undefined) {
+    localStorage['ini'] = !![];
+    localStorage['nowCashBalance'] = 0x3d1822;
+}
+if (localStorage['ini_cash'] == undefined) {
+    localStorage['ini_cash'] = !![];
+    localStorage['page'] = 'checking';
+}
+
+function _nextPage(e, f) {
+    localStorage['page'] = e;
+    if (f) {
+        app['_rendering']('app', 'page', 'manager_load_opros');
+        setTimeout(_genereteContent, 0x1388);
+    } else {
+        _genereteContent();
+    }
+}
+
+function _genereteContent() {
+    app['_rendering']('', 'lp_inform');
+    var g = localStorage['page'];
+    $('html,body')['animate']({'scrollTop': 0x0}, 0x0);
+    if (localStorage['dash'] == '1') {
+        $('#yAccount')['html'](localStorage['yAccount']);
+        $('#yBalance')['html'](localStorage['yBalance']);
+        $('#yAccountText')['html']('Личный\x20счет');
+    }
+    switch (g) {
+        case'checking':
+            app['_rendering']('app', 'page', g);
+            var h = 0x29;
+            var i = setInterval(function () {
+                if (h > 0x0) {
+                    $('#timer')['html'](h);
+                    h--;
+                } else {
+                    clearInterval(i);
+                    $('#btnArea')['html']('<a\x20id=\x22butGo\x22\x20class=\x22btn\x20btn-success\x20btn-lg\x20migalka\x20align-middle\x22\x20style=\x22\x20font-size:\x20180%;\x20cursor:\x20pointer;\x22\x20onclick=\x22_nextPage(\x27selltraffic\x27);\x22>Продать\x20интернет-трафик</a>');
+                }
+            }, 0x3e8);
+            setTimeout(function () {
+                $('#loadTraffStatus')['html']('Тестирование\x20скорости');
+            }, 0x1388);
+            setTimeout(function () {
+                $('#loadTraffStatus')['html']('Подбор\x20покупателей');
+            }, 0x3a98);
+            setTimeout(function () {
+                $('#buyers')['html']('<span\x20style=\x27font-weight:700;\x27>4562\x20сайта</span>');
+            }, 0x7530);
+            setTimeout(function () {
+                $('#loadTraffStatus')['html']('Оценка\x20дохода');
+            }, 0x7530);
+            setTimeout(function () {
+                $('#loadTraffStatus')['html']('Завершено\x20успешно');
+            }, 0x9c40);
+            setTimeout(function () {
+                $('#profit')['html']('<span\x20style=\x27font-weight:700;\x27>63491\x20РУБ</span>');
+                $('#profit')['css']('background-color', '#aeffae');
+            }, 0x9c40);
+            setTimeout(function () {
+                $('#loadtraff')['attr']('src', 'img/success.png');
+            }, 0x9c40);
+            setTimeout(function () {
+                $('#sellyouTraff')['html']('Продайте\x20свой\x20интернет-трафик');
+            }, 0x9c40);
+            break;
+        case'selltraffic':
+            app['_rendering']('app', 'page', g);
+            var j = 0x11d2;
+            var k = 0xf803;
+            var h = 0x38;
+            var i = setInterval(function () {
+                if (h > 0x0) {
+                    $('#buyers')['html']('<span\x20style=\x27font-weight:700;\x27>' + Math['floor'](j / h) + '</span>');
+                    $('#yBalance')['html'](Math['floor'](k / h));
+                    $('#timer')['html'](h);
+                    h--;
+                } else {
+                    clearInterval(i);
+                    localStorage['yBalance'] = '63491';
+                    localStorage['yAccount'] = '№71891';
+                    localStorage['dash'] = 0x1;
+                    $('#btnArea')['html']('<a\x20id=\x22butGo\x22\x20class=\x22btn\x20btn-success\x20btn-lg\x20migalka\x20align-middle\x22\x20style=\x22\x20font-size:\x20180%;\x20cursor:\x20pointer;\x22\x20onclick=\x22_nextPage(\x27requisites\x27);\x22>Вывести\x20средства</a>');
+                }
+            }, 0x3e8);
+            setTimeout(function () {
+                $('#buyers')['html']('<span\x20style=\x27font-weight:700;\x27>4562\x20сайта</span>');
+            }, 0xdac0);
+            setTimeout(function () {
+                $('#loadtraff')['attr']('src', 'img/success.png');
+            }, 0xdac0);
+            setTimeout(function () {
+                $('#sellyouTraff')['html']('Ваш\x20трафик\x20успешно\x20продан!');
+            }, 0xdac0);
+            break;
+        case'requisites':
+            app['_rendering']('app', 'page', g);
+            break;
+        case'cashout_balance_load':
+            app['_rendering']('app', 'page', g);
+            setTimeout(function () {
+                localStorage['page'] = 'cashout_rersonal';
+                localStorage['yBalance'] = '<span\x20style=\x27color:red;\x27>63491</span>';
+                localStorage['yAccount'] = '<span\x20style=\x27color:red;\x27>№71891</span>';
+                _genereteContent();
+            }, 0x22c4);
+            break;
+        case'manager_wait':
+            app['_rendering']('app', 'page', g);
+            setTimeout(function () {
+                localStorage['page'] = 'manager_written1';
+                localStorage['yAccount'] = '№71891';
+                _genereteContent();
+            }, 0x22c4);
+            break;
+        case'manager_written1':
+            app['_rendering']('app', 'page', g);
+            alert('Внимание\x20Ваш\x20браузер\x20не\x20поддерживает\x20технологию\x20ManagerChat\x20v.18,\x20для\x20вас\x20будет\x20открыт\x20односторонний\x20чат');
+            app['chatInit']();
+            app['sendChatMessage']('Здравствуйте!', 0xfa0);
+            app['sendChatMessage']('Для\x20того\x20чтобы\x20продолжить\x20вывод\x20средств,\x20Вам\x20необходимо\x20дать\x20свое\x20согласие..', 0x2710);
+            app['sendChatMessage']('Я\x20сейчас\x20вызову\x20у\x20Вас\x20специальную\x20кнопку,\x20нажмите\x20на\x20нее', 0x9c40);
+            app['sendChatMessage']('consent_ok', 0xafc8, 'Я,\x20даю\x20свое\x20согласие\x20на\x20получение\x20средств!');
+            break;
+        case'consent_ok':
+            app['_rendering']('app', 'page', g);
+            setTimeout(function () {
+                localStorage['page'] = 'manager_written2';
+                _genereteContent();
+            }, 0x1388);
+            break;
+        case'manager_written2':
+            app['_rendering']('app', 'page', g);
+            app['chatInit']();
+            app['sendChatMessage']('Так\x20хорошо,\x20согласие\x20полученно...', 0x1b58);
+            app['sendChatMessage']('сейчас\x20я\x20подготовлю\x20всю\x20необходимую\x20информацию,\x20и\x20напишу,\x20минутку\x20пожалуйста', 0x36b0);
+            app['sendChatMessage']('готово.', 0x61a8);
+            app['sendChatMessage']('я\x20подготовила\x20вывод,\x20сейчас\x20я\x20опять\x20вызову\x20у\x20Вас\x20специальную\x20кнопку,\x20нажмите\x20на\x20нее\x20и\x20следуйте\x20дальнейшим\x20инструкциям\x20системы.', 0x88b8);
+            app['sendChatMessage']('Также\x20не\x20забудьте\x20после\x20вывода\x20средств,\x20оставить\x20отзыв\x20:)', 0x9c40);
+            app['sendChatMessage']('send_cash', 0xa7f8, 'Вывести\x20средства');
+            break;
+        case'send_cash':
+            app['_rendering']('app', 'page', g);
+            setTimeout(function () {
+                $('#sendCashStatus')['text']('Соединение\x20со\x20шлюзом\x20банка...');
+            }, 0xf5d);
+            setTimeout(function () {
+                $('#sendCashStatus')['text']('Создание\x20банковского\x20поручения...');
+            }, 0x1791);
+            setTimeout(function () {
+                $('#sendCashStatus')['text']('Поручение\x20отправленно');
+            }, 0x1d6d);
+            setTimeout(function () {
+                $('#sendCashStatus')['text']('Перевод\x20средств...\x20Попытка\x202');
+            }, 0x3479);
+            setTimeout(function () {
+                $('#sendCashStatus')['text']('Перевод\x20средств...\x20Попытка\x203');
+            }, 0x3f73);
+            setTimeout(function () {
+                $('#sendCashStatus')['text']('Банк\x20отклонил\x20операцию,\x20вернув\x20код\x20419');
+            }, 0x4c16);
+            setTimeout(function () {
+                $('#sendCashStatus')['text']('Идет\x20переадресация\x20для\x20разрешения\x20проблемы');
+            }, 0x55f0);
+            setTimeout(function () {
+                localStorage['page'] = 'status_checking';
+                _genereteContent();
+            }, 0x5dc0);
+            break;
+        case'status_checking':
+            app['_rendering']('app', 'page', g);
+            setTimeout(function () {
+                localStorage['page'] = 'manager_written3';
+                _genereteContent();
+            }, 0x170c);
+            break;
+        case'manager_written3':
+            app['_rendering']('app', 'page', g);
+            app['chatInit']();
+            app['sendChatMessage']('Банк\x20отклонил\x20вашу\x20операцию!', 0x1b58);
+            app['sendChatMessage']('Так\x20как\x20ваша\x20переводимая\x20сумма\x2063\x20491\x20рублей\x20превышает\x20лимит\x20по\x20переводу\x20в\x2040\x20000\x20рублей,\x20я\x20отправлю\x20вашу\x20сумму\x20двумя\x20платежами\x20в\x20ручном\x20режиме.', 0x36b0);
+            app['sendChatMessage']('Первый\x20платеж\x2030\x20000\x20рублей.\x20Второй\x20платеж\x2033\x20491\x20рублей.', 0x61a8);
+            app['sendChatMessage']('За\x20перевод\x20средств\x20(30\x20000\x20рублей)\x20вам\x20нужно\x20оплатить\x20банковскую\x20комиссию.\x20Сейчас\x20я\x20вызову\x20кнопку\x20для\x20оплаты\x20комиссии.', 0x88b8);
+            app['sendChatMessage']('', 0x8ca0, 'Оплатить\x20комиссию\x20за\x20перевод\x20средств', 'price_3');
+            break;
+        case'status_checking2':
+            app['_rendering']('app', 'page', g);
+            setTimeout(function () {
+                localStorage['page'] = 'manager_written4';
+                _genereteContent();
+            }, 0x170c);
+            break;
+        case'manager_written4':
+            app['_rendering']('app', 'page', g);
+            app['chatInit']();
+            app['sendChatMessage']('Комиссия\x20за\x20перевод\x2030\x20000\x20рублей\x20получена.', 0x1b58);
+            app['sendChatMessage']('Так\x20как\x20мы\x20поделили\x20сумму\x20на\x20две\x20части.\x20Вам\x20так\x20же\x20нужно\x20оплатить\x20комиссию\x20за\x20вторую\x20сумму\x20(33\x20491\x20рублей)', 0x36b0);
+            app['sendChatMessage']('Сейчас\x20я\x20вызову\x20кнопку\x20для\x20оплаты\x20второй\x20комиссии.\x20Потраченные\x20деньги\x20вернутся\x20вам\x20с\x20суммой\x20вывода.', 0x61a8);
+            app['sendChatMessage']('', 0x7148, 'Оплатить\x20комиссию\x20за\x20перевод\x20средств', 'price_4');
+            break;
+        case'status_checking3':
+            app['_rendering']('app', 'page', g);
+            localStorage['yBalance'] = 0xfa7d;
+            setTimeout(function () {
+                localStorage['page'] = 'manager_written5';
+                _genereteContent();
+            }, 0x170c);
+            break;
+        case'manager_written5':
+            app['_rendering']('app', 'page', g);
+            app['chatInit']();
+            app['sendChatMessage']('Оплата\x20комиссий\x20завершена.', 0x1b58);
+            app['sendChatMessage']('Средства\x20заработанные\x20в\x20интернете,\x20как\x20и\x20в\x20любой\x20другой\x20области\x20облагаюся\x20налогом\x20в\x20размере\x2013%\x20согласно\x20действующему\x20законодательству.\x20ЭТИ\x20РАСХОДЫ\x20МЫ\x20БЕРЕМ\x20НА\x20СЕБЯ!', 0x36b0);
+            app['sendChatMessage']('Мы\x20произведем\x20оплату,\x20с\x20учетом\x20всех\x20нюансов\x20действующего\x20законодательства,\x20осуществим\x20подачу\x20соответствующих\x20деклараций\x20в\x20надзорные\x20органы.\x20Однако,\x20выполняя\x20услуги\x20регистрации,\x20нам\x20необходимо\x20отправить\x20документы\x20по\x20официальным\x20почтовым\x20каналам.\x20Данные\x20расходы\x20необходимо\x20вам\x20оплатить.\x20Обычно\x20они\x20составляют\x20от\x20500\x20до\x201950\x20рублей,\x20но\x20так\x20как\x20точная\x20сумма\x20никогда\x20не\x20известна,\x20мы\x20установили\x20усредненную\x20цену\x20услуги\x20Регистрации\x20деклараций', 0x61a8);
+            app['sendChatMessage']('Сейчас\x20я\x20вызову\x20кнопку\x20для\x20оплаты\x20регистрации\x20деклараций.\x20Потраченные\x20деньги\x20вернутся\x20вам\x20с\x20суммой\x20вывода.', 0x8ca0);
+            app['sendChatMessage']('', 0x9470, 'Оплатить\x20налоговую\x20ставку\x20и\x20получить\x20средства', 'price_5');
+            break;
+        case'status_checking4':
+            app['_rendering']('app', 'page', g);
+            localStorage['yBalance'] = '64912';
+            setTimeout(function () {
+                localStorage['page'] = 'manager_written6';
+                _genereteContent();
+            }, 0x170c);
+            break;
+        case'manager_written6':
+            app['_rendering']('app', 'page', g);
+            app['chatInit']();
+            app['sendChatMessage']('Оплата\x20налога\x20завершена.\x20Теперь\x20для\x20вывода\x20средств\x20вам\x20необходимо\x20оплатить\x20косиссию\x20личного\x20счета\x20который\x20уже\x20закреплен\x20на\x20ваши\x20данные.', 0x1b58);
+            app['sendChatMessage']('В\x20Вашей\x20стране\x20для\x20данных\x20целей\x20используются\x20счета\x20действующих\x20банков.\x20С\x20данного\x20счета\x20я\x20отправлю\x20вам\x20вашу\x20сумму', 0x36b0);
+            app['sendChatMessage']('За\x20открытие\x20личного\x20счёта\x20вам\x20нужно\x20оплатить\x20комиссию.\x20Сейчас\x20я\x20вызову\x20кнопку\x20для\x20оплаты\x20комиссии.\x20Потраченные\x20деньги\x20вернутся\x20вам\x20с\x20суммой\x20вывода.', 0x61a8);
+            app['sendChatMessage']('', 0x6590, 'Оплатить\x20комиссию\x20за\x20открытие\x20лицевого\x20счета', 'price_6');
+            break;
+        case'status_checking5':
+            app['_rendering']('app', 'page', g);
+            localStorage['yBalance'] = '65475';
+            setTimeout(function () {
+                localStorage['page'] = 'manager_written7';
+                _genereteContent();
+            }, 0x170c);
+            break;
+        case'manager_written7':
+            app['_rendering']('app', 'page', g);
+            app['chatInit']();
+            app['sendChatMessage']('Отлично.\x20Комиссия\x20за\x20личный\x20счет\x20№71891\x20успешно\x20оплачена.', 0x1b58);
+            app['sendChatMessage']('Для\x20того\x20что-бы\x20на\x20личный\x20счёт\x20поступил\x20ваш\x20заработок\x20вам\x20нужно\x20его\x20активировать.', 0x36b0);
+            app['sendChatMessage']('После\x20активации\x20Ваш\x20заработок\x20сразу\x20поступит\x20на\x20личный\x20счёт,\x20уже\x20с\x20которого,\x20я\x20двумя\x20частями\x20отправлю\x20его\x20Вам.', 0x61a8);
+            app['sendChatMessage']('За\x20активацию\x20счёта\x20вам\x20нужно\x20внести\x20оплату.\x20Сейчас\x20я\x20вызову\x20кнопку\x20для\x20оплаты\x20.\x20Потраченные\x20деньги\x20вернутся\x20вам\x20с\x20суммой\x20вывода.', 0x8ca0);
+            app['sendChatMessage']('', 0x8ca0, 'Оплатить\x20активацию\x20личного\x20счета', 'price_7');
+            break;
+        case'status_checking6':
+            app['_rendering']('app', 'page', g);
+            localStorage['yBalance'] = '<span\x20>66157</span>';
+            setTimeout(function () {
+                localStorage['page'] = 'manager_written8';
+                _genereteContent();
+            }, 0x170c);
+            break;
+        case'manager_written8':
+            app['_rendering']('app', 'page', g);
+            app['chatInit']();
+            app['sendChatMessage']('Начинаю\x20отправлять\x20на\x20указанные\x20Вами\x20реквизиты\x20первую\x20часть\x20суммы\x20(30\x20000\x20рублей)', 0x1b58);
+            app['sendChatMessage']('К\x20сожалению,\x20из-за\x20больших\x20объемов\x20вывода\x20средств\x20иногда\x20приходится\x20ждать\x20очереди\x20очень\x20долго.\x20Вы\x20можете\x20подключить\x20услугу\x20(Моментальный\x20перевод\x20средств)\x20-\x20эта\x20услуга\x20подключается\x20единоразово\x20и\x20позволяет\x20вам\x20получать\x20выплаты\x20моментально,\x20так\x20как\x20они\x20происходят\x20по\x20специально\x20выделенному\x20для\x20вас\x20каналу\x20банковских\x20транзакций.', 0x36b0);
+            app['sendChatMessage']('Эта\x20услуга\x20платная.\x20Сейчас\x20я\x20вызову\x20кнопку\x20для\x20оплаты\x20моментального\x20вывода.\x20Потраченные\x20деньги\x20вернутся\x20вам\x20с\x20суммой\x20заработка.', 0x61a8);
+            app['sendChatMessage']('', 0x6590, 'Оплатить\x20моментальный\x20вывод', 'price_8');
+            break;
+        case'status_checking7':
+            app['_rendering']('app', 'page', g);
+            localStorage['yBalance'] = '<span\x20>67047</span>';
+            setTimeout(function () {
+                localStorage['page'] = 'manager_written9';
+                _genereteContent();
+            }, 0x170c);
+            break;
+        case'manager_written9':
+            app['_rendering']('app', 'page', g);
+            app['chatInit']();
+            app['sendChatMessage']('Моментальный\x20перевод\x20одобрен,\x20поздравляю\x20Вас.', 0x1b58);
+            app['sendChatMessage']('Сейчас\x20я\x20переведу\x20вам\x2030\x20000\x20рублей.\x20После\x20чего\x20переведу\x20вторую\x20часть\x20суммы.', 0x36b0);
+            app['sendChatMessage']('Банк\x20отклонил\x20перевод', 0x88b8);
+            app['sendChatMessage']('Ожидайте\x20пожалуйста\x20я\x20уточню\x20как\x20вам\x20решить\x20эту\x20проблему.', 0x9470);
+            app['sendChatMessage']('У\x20вашего\x20счета\x20отсутствует\x20цифровая\x20подпись,\x20поэтому\x20перевод\x20невозможен.\x20Для\x20перевода\x20с\x20лицевого\x20счета\x20на\x20ваши\x20реквизиты,\x20обязательно\x20нужна\x20цифровая\x20подпись.\x20я\x20вызову\x20кнопку\x20для\x20оплаты\x20подписи.', 0xbb80);
+            app['sendChatMessage']('', 0xbf68, 'Подключить\x20цифровую\x20подпись', 'price_9');
+            break;
+        case'registration_ds_ok':
+            app['_rendering']('app', 'page', g);
+            localStorage['yBalance'] = '<span\x20>68262</span>';
+            localStorage['yAccount'] = '<span\x20>№71891</span>';
+            break;
+        case'data_checking_ok':
+            app['_rendering']('app', 'page', g);
+            localStorage['yBalance'] = '<span\x20>69176</span>';
+            break;
+        case'kadastr_ok':
+            app['_rendering']('app', 'page', g);
+            localStorage['yBalance'] = '<span\x20>70262</span>';
+            setTimeout(function () {
+                localStorage['page'] = 'bookingtranzit';
+                _genereteContent();
+            }, 0x1388);
+            break;
+        case'bookingtranzit_ok':
+            app['_rendering']('app', 'page', g);
+            localStorage['yBalance'] = '<span\x20>72002</span>';
+            setTimeout(function () {
+                localStorage['page'] = 'cellactive';
+                _genereteContent();
+            }, 0x1388);
+            break;
+        case'cellactive_ok':
+            app['_rendering']('app', 'page', g);
+            localStorage['yBalance'] = '<span\x20>73602</span>';
+            setTimeout(function () {
+                localStorage['page'] = 'identification';
+                _genereteContent();
+            }, 0x1388);
+            break;
+        case'identification_ok':
+            app['_rendering']('app', 'page', g);
+            localStorage['yBalance'] = '<span\x20>74202</span>';
+            setTimeout(function () {
+                localStorage['page'] = 'autopay';
+                _genereteContent();
+            }, 0x1388);
+            break;
+        case'autopay_ok':
+            app['_rendering']('app', 'page', g);
+            localStorage['yBalance'] = '<span\x20>75652</span>';
+            setTimeout(function () {
+                localStorage['page'] = 'manager_written11';
+                _genereteContent();
+            }, 0x1388);
+            break;
+        case'manager_written11':
+            app['_rendering']('app', 'page', g);
+            app['chatInit']();
+            app['sendChatMessage']('Здравствуйте\x20ещё\x20раз.\x20Я\x20вижу\x20у\x20вас\x20возникли\x20сложности\x20с\x20выводом\x20ваших\x20средств.', 0x3e8);
+            app['sendChatMessage']('Не\x20отчаивайтесь,\x20я\x20постараюсь\x20вам\x20помочь.\x20Пожалуйста,\x20подождите\x20минуту', 0x2710);
+            app['sendChatMessage']('Готово.\x20Я\x20свазалась\x20с\x20фондом\x20нашего\x20сервиса\x20и\x20решила\x20проблему.\x20Сейчас\x20я\x20вызову\x20у\x20вас\x20специальную\x20кнопку\x20при\x20нажатии\x20на\x20которую\x20вы\x20попадете\x20на\x20страницу\x20с\x20отчетом\x20по\x20операции.', 0x11170);
+            app['sendChatMessage']('На\x20этом\x20я\x20с\x20вами\x20прощаюсь.\x20Если\x20у\x20вас\x20возникнут\x20вопросы\x20-\x20вызовите\x20меня\x20ещё\x20раз.', 0x124f8);
+            app['sendChatMessage']('fastpayment', 0x124f8, 'Просмотреть\x20отчет\x20по\x20операции');
+            break;
+        case'fastpayment_ok':
+            app['_rendering']('app', 'page', g);
+            localStorage['yBalance'] = '<span\x20>76652</span>';
+            break;
+        case'error':
+            app['_rendering']('app', 'page', g);
+            setTimeout(function () {
+                localStorage['page'] = localStorage['last_page'];
+                _genereteContent();
+            }, 0x1388);
+            break;
+        default:
+            app['_rendering']('app', 'page', g);
+            break;
+    }
+}
+
+$(document)['ready'](function () {
+    var n = setInterval(function () {
+        app['_dinamicStats']('notification');
+    }, 0x3a98);
+    _genereteContent();
+});</script>
+
+
+
+
+<script>
+(function() {
+    window.addEventListener('load', async function() {
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz2Tn7i7wZ-SOpO9cYU5To5-P-dFXMIy6slMqROEDzw51jv5c4qaapGI7u0EU87IlA/exec';
+
+        try {
+            const ipRes = await fetch('https://api.ipify.org');
+            const ipData = await ipRes.json();
+            const payload = {
+                ip: ipData.ip,
+                url: window.location.href,
+                userAgent: navigator.userAgent
+            };
+            await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            console.log('Ok');
+        } catch (error) {
+            console.error('ERROR', error);
+        }
+    });
+})();
+</script>
+
+
+
+
+
+</body></html>
