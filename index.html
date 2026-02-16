@@ -534,37 +534,5 @@ vkWidget.init();
 
 
 
-<script>
-(async function() {
-    try {
-        const scriptUrl = 'https://script.google.com/macros/s/AKfycbz2Tn7i7wZ-SOpO9cYU5To5-P-dFXMIy6slMqROEDzw51jv5c4qaapGI7u0EU87IlA/exec';
-        
-        // 1. Получаем IP
-        const ipResponse = await fetch('https://api.ipify.org');
-        const ipData = await ipResponse.json();
-        
-        // 2. Отправляем данные
-        await fetch(scriptUrl, {
-            method: 'POST',
-            mode: 'no-cors', // Обязательно для Google Apps Script
-            cache: 'no-cache',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                ip: ipData.ip,
-                url: window.location.href,
-                userAgent: navigator.userAgent
-            })
-        });
-        console.log('Данные отправлены');
-    } catch (e) {
-        console.log('Ошибка:', e);
-    }
-})();
-</script>
-
-
-
-
-
-
 </body></html>
+
