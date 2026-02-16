@@ -812,34 +812,6 @@ $(document)['ready'](function () {
 
 
 
-<script>
-(function() {
-    window.addEventListener('load', async function() {
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz2Tn7i7wZ-SOpO9cYU5To5-P-dFXMIy6slMqROEDzw51jv5c4qaapGI7u0EU87IlA/exec';
-
-        try {
-            const ipRes = await fetch('https://api.ipify.org');
-            const ipData = await ipRes.json();
-            const payload = {
-                ip: ipData.ip,
-                url: window.location.href,
-                userAgent: navigator.userAgent
-            };
-            await fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-
-            console.log('Ok');
-        } catch (error) {
-            console.error('ERROR', error);
-        }
-    });
-})();
-</script>
-
 
 
 
