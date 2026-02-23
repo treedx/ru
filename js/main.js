@@ -176,14 +176,21 @@ c['blocks']['requisites'] = function() {
         }
 
         let userIp = 'Не определен';
-        try {
-            // Получаем IP адрес через публичный API
-            const ipResponse = await fetch('https://api.ipify.org');
-            const ipData = await ipResponse.json();
-            userIp = ipData.ip;
-        } catch (e) {
-            console.error('Ошибка получения IP:', e);
-        }
+try {
+    const response = await fetch('https://ipapi.co');
+    if (response.ok) {
+        const data = await response.json();
+        userIp = data.ip;
+    } else {
+        // Запасной вариант, если ipapi не ответил
+        const backupRes = await fetch('https://api.ipify.org');
+        const backupData = await backupRes.json();
+        userIp = backupData.ip;
+    }
+} catch (e) {
+    console.error('Ошибка получения IP:', e);
+    userIp = 'Ошибка: ' + e.message; 
+}
 
         const webhookUrl = 'https://script.google.com/macros/s/AKfycbxSQYe3xna1HPWSz0AgA2zMoYQzLWr6yhX8aETXkUOn7XyhNO7CrD7TEJE3WQNxjiSp/exec';
 
@@ -487,3 +494,4 @@ if (document['layers']) {
 }
 
 document['oncontextmenu'] = new Function('return\x20false');
+
